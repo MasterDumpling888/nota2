@@ -13,10 +13,10 @@ const getUserFoldersCollection = () => {
   return collection(db, 'users', user.uid, 'folders');
 };
 
-const getUserCategoriesCollection = () => {
+const getUserTagsCollection = () => {
   const user = auth.currentUser;
   if (!user) throw new Error('User not authenticated');
-  return collection(db, 'users', user.uid, 'categories');
+  return collection(db, 'users', user.uid, 'tags');
 };
 
 export const addNote = async (note) => {
@@ -91,13 +91,13 @@ export const addFolder = async (folder) => {
   }
 };
 
-export const addCategory = async (category) => {
+export const addTag = async (tag) => {
   try {
-    const categoriesCollection = getUserCategoriesCollection();
-    const docRef = await addDoc(categoriesCollection, category);
+    const tagsCollection = getUserTagsCollection();
+    const docRef = await addDoc(tagsCollection, tag);
     return docRef.id;
   } catch (error) {
-    console.error("Error adding category: ", error);
+    console.error("Error adding tag: ", error);
     throw error;
   }
 };
@@ -114,14 +114,14 @@ export const fetchFolders = async () => {
   }
 };
 
-export const fetchCategories = async () => {
+export const fetchTags = async () => {
   try {
-    const categoriesCollection = getUserCategoriesCollection();
-    const querySnapshot = await getDocs(categoriesCollection);
-    const categoriesList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return categoriesList;
+    const tagsCollection = getUserTagsCollection();
+    const querySnapshot = await getDocs(tagsCollection);
+    const tagsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return tagsList;
   } catch (error) {
-    console.error("Error fetching categories: ", error);
+    console.error("Error fetching tags: ", error);
     throw error;
   }
 };

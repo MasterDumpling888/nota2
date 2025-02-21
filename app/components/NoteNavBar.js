@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Image, Text } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { getFontSize } from '../responsiveFont';
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
 
-const LoggedInNavBar = () => {
+const NoteNavBar = ({ title }) => {
+  const navigation = useNavigation();
+
   const [menuProfileVisible, setMenuProfileVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const navigation = useNavigation();
 
   const handleLogout = async () => {
     try {
@@ -19,12 +18,13 @@ const LoggedInNavBar = () => {
       console.error('Failed to log out', error);
     }
   };
-
   return (
     <View style={styles.navBar}>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity style={styles.navButtons} onPress={() => navigation.goBack()}>
+        <Icon name="chevron-back-outline" size={30} color="black" />
         <Image source={require('../assets/logo.png')} style={styles.logo} />
       </TouchableOpacity>
+      <Text style={styles.noteTitle}>{title}</Text>
       <View style={styles.navButtons}>
         <TouchableOpacity onPress={() => { setMenuVisible(!menuVisible); setMenuProfileVisible(false); }}>
           <Icon name="menu" size={30} color="black" />
@@ -66,7 +66,7 @@ const LoggedInNavBar = () => {
           </TouchableOpacity>
         </View>
       )}
-    </View>
+    </View >
   );
 };
 
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     paddingRight: 15,
     paddingLeft: 15,
+    backgroundColor: 'white',
   },
   logo: {
     width: 50,
@@ -110,12 +111,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#E5E5E5',
   },
-  navItem: {
-    fontSize: getFontSize(12)
+  noteTitle: {
+    fontSize: getFontSize(14),
+    textDecorationLine: 'underline',
+    textDecorationColor: '#33FD0A',
   },
   profileIcon: {
     padding: 8,
   },
 });
 
-export default LoggedInNavBar;
+export default NoteNavBar;

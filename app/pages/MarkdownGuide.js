@@ -1,26 +1,32 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PageBox from '../components/PageBox';
-import Markdown from 'react-native-markdown-display';
+import MarkdownCard from '../components/MarkdownCard';
 
-const markdownGuideContent = `
-# Markdown Guide
-
-## Headers
+const markdownGuides = [
+  {
+    title: 'Headers',
+    markdown: `
 # H1
 ## H2
 ### H3
 #### H4
 ##### H5
 ###### H6
-
-## Emphasis
+    `,
+  },
+  {
+    title: 'Emphasis',
+    markdown: `
 *Italic*  
 **Bold**  
 ***Bold Italic***
-
-## Lists
+    `,
+  },
+  {
+    title: 'Lists',
+    markdown: `
 ### Unordered
 - Item 1
 - Item 2
@@ -32,36 +38,56 @@ const markdownGuideContent = `
 2. Item 2
    1. Subitem 1
    2. Subitem 2
-
-## Links
+    `,
+  },
+  {
+    title: 'Links',
+    markdown: `
 [Google](https://www.google.com)
-
-## Images
+    `,
+  },
+  {
+    title: 'Images',
+    markdown: `
 ![Alt text](https://via.placeholder.com/150)
-
-## Blockquotes
+    `,
+  },
+  {
+    title: 'Blockquotes',
+    markdown: `
 > This is a blockquote.
-
-## Code
+    `,
+  },
+  {
+    title: 'Code',
+    markdown: `
 \`Inline code\`
 
 \`\`\`
 Block code
 \`\`\`
-
-## Tables
-| Header 1 | Header 2 |
-| -------- | -------- |
-| Cell 1   | Cell 2   |
-| Cell 3   | Cell 4   |
-`;
+    `,
+  },
+  {
+    title: 'Tables',
+    markdown: `
+| Month    | Savings |
+| -------- | ------- |
+| January  | $250    |
+| February | $80     |
+| March    | $420    |
+    `,
+  },
+];
 
 function MarkdownGuide({ navigation }) {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <PageBox title="Markdown Guide" onClose={() => navigation.goBack()}>
-        <ScrollView style={styles.container}>
-          <Markdown>{markdownGuideContent}</Markdown>
+        <ScrollView>
+          {markdownGuides.map((guide, index) => (
+            <MarkdownCard key={index} title={guide.title} markdown={guide.markdown} />
+          ))}
         </ScrollView>
       </PageBox>
     </SafeAreaView>
@@ -70,7 +96,9 @@ function MarkdownGuide({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
   },
 });
 

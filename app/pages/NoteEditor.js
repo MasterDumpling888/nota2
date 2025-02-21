@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Modal, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import NoteNavBar from '../components/NoteNavBar';
 import PageBox from '../components/PageBox';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Markdown from 'react-native-markdown-display';
-import { addNote, getNote, updateNote, fetchFolders, fetchCategories } from '../services/notesService';
+import { getFontSize } from '../responsiveFont';
+import { addNote, getNote, updateNote, fetchFolders, fetchTags } from '../services/notesService';
+import { summarizeNote } from '../services/aiService';
+import Footer from '../components/Footer';
 
 function NoteEditor({ route, navigation }) {
   const { noteId } = route.params || {};
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [folder, setFolder] = useState('');
-  const [category, setCategory] = useState('');
+  const [tag, setTag] = useState('');
   const [folders, setFolders] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [folderModalVisible, setFolderModalVisible] = useState(false);
-  const [categoryModalVisible, setCategoryModalVisible] = useState(false);
+  const [tags, setTags] = useState([]);
+  const [folderDropdownVisible, setFolderDropdownVisible] = useState(false);
+  const [tagDropdownVisible, setTagDropdownVisible] = useState(false);
 
   useEffect(() => {
     const loadNote = async () => {
@@ -24,7 +29,7 @@ function NoteEditor({ route, navigation }) {
           setTitle(note.title);
           setContent(note.content);
           setFolder(note.folder || '');
-          setCategory(note.category || '');
+          setTag(note.tag || '');
         } catch (error) {
           console.error('Failed to load note', error);
         }
@@ -40,23 +45,23 @@ function NoteEditor({ route, navigation }) {
       }
     };
 
-    const loadCategories = async () => {
+    const loadTags = async () => {
       try {
-        const categoriesList = await fetchCategories();
-        setCategories(categoriesList);
+        const tagsList = await fetchTags();
+        setTags(tagsList);
       } catch (error) {
-        console.error('Failed to load categories', error);
+        console.error('Failed to load tags', error);
       }
     };
 
     loadNote();
     loadFolders();
-    loadCategories();
+    loadTags();
   }, [noteId]);
 
   const handleSaveNote = async () => {
     try {
-      const note = { title, content, folder, category };
+      const note = { title, content, folder, tag };
       if (noteId) {
         await updateNote(noteId, note);
       } else {
@@ -68,119 +73,158 @@ function NoteEditor({ route, navigation }) {
     }
   };
 
+  const handleSummarizeNote = async () => {
+    try {
+      const summary = await summarizeNote(content);
+      setContent(summary);
+    } catch (error) {
+      console.error('Failed to summarize note', error);
+    }
+  };
+
   const renderFolderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => { setFolder(item.id); setFolderModalVisible(false); }}>
-      <Text style={styles.modalItem}>{item.name}</Text>
+    <TouchableOpacity onPress={() => { setFolder(item.id); setFolderDropdownVisible(false); }}>
+      <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
 
-  const renderCategoryItem = ({ item }) => (
-    <TouchableOpacity onPress={() => { setCategory(item.id); setCategoryModalVisible(false); }}>
-      <Text style={styles.modalItem}>{item.name}</Text>
+  const renderTagItem = ({ item }) => (
+    <TouchableOpacity onPress={() => { setTag(item.id); setTagDropdownVisible(false); }}>
+      <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      {/* <NoteNavBar title={title || "New Note"} /> */}
       <PageBox title={noteId ? "Edit Note" : "Create Note"} onClose={() => navigation.goBack()}>
-        <View style={styles.inputContainer}>
-          <Text>Title</Text>
-          <TextInput
-            style={styles.input}
-            value={title}
-            onChangeText={setTitle}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text>Content (Markdown supported)</Text>
+        <ScrollView>
+          <View style={styles.header}>
+            <TextInput
+              style={styles.input}
+              value={title}
+              placeholder='Add your title'
+              onChangeText={setTitle}
+            />
+            <TouchableOpacity style={styles.aiButton} onPress={handleSummarizeNote} >
+              <Icon name="sparkles" size={24} color="black" style={styles.closeIcon} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.previewContainer}>
+            <Text style={styles.inputTitle}>Preview:</Text>
+            <Markdown>{content}</Markdown>
+          </View>
           <TextInput
             style={styles.textArea}
             value={content}
+            placeholder='Start typing here! (Markdown supported)'
             onChangeText={setContent}
             multiline
           />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text>Folder</Text>
-          <TouchableOpacity onPress={() => setFolderModalVisible(true)} style={styles.selector}>
-            <Text>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputTitle}>Folder</Text>
+            <TouchableOpacity onPress={() => setFolderDropdownVisible(!folderDropdownVisible)} style={styles.selector}>
+              <Text>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
+            </TouchableOpacity>
+            {folderDropdownVisible && (
+              <View style={styles.dropdown}>
+                <FlatList
+                  data={folders}
+                  renderItem={renderFolderItem}
+                  keyExtractor={(item) => item.id}
+                />
+              </View>
+            )}
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputTitle}>Tag</Text>
+            <TouchableOpacity onPress={() => setTagDropdownVisible(!tagDropdownVisible)} style={styles.selector}>
+              <Text>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
+            </TouchableOpacity>
+            {tagDropdownVisible && (
+              <View style={styles.dropdown}>
+                <FlatList
+                  data={tags}
+                  renderItem={renderTagItem}
+                  keyExtractor={(item) => item.id}
+                />
+              </View>
+            )}
+          </View>
+          <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote} >
+            <Text style={{ fontWeight: 'bold', fontSize: getFontSize(18) }}>Save</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.inputContainer}>
-          <Text>Category</Text>
-          <TouchableOpacity onPress={() => setCategoryModalVisible(true)} style={styles.selector}>
-            <Text>{category ? categories.find(c => c.id === category)?.name : 'Select Category'}</Text>
-          </TouchableOpacity>
-        </View>
-        <Button title="Save Note" onPress={handleSaveNote} />
-        <View style={styles.previewContainer}>
-          <Text>Preview:</Text>
-          <Markdown>{content}</Markdown>
-        </View>
+          <Footer />
+        </ScrollView>
       </PageBox>
-
-      <Modal visible={folderModalVisible} animationType="slide">
-        <SafeAreaView style={styles.modalContainer}>
-          <FlatList
-            data={folders}
-            renderItem={renderFolderItem}
-            keyExtractor={(item) => item.id}
-          />
-          <Button title="Close" onPress={() => setFolderModalVisible(false)} />
-        </SafeAreaView>
-      </Modal>
-
-      <Modal visible={categoryModalVisible} animationType="slide">
-        <SafeAreaView style={styles.modalContainer}>
-          <FlatList
-            data={categories}
-            renderItem={renderCategoryItem}
-            keyExtractor={(item) => item.id}
-          />
-          <Button title="Close" onPress={() => setCategoryModalVisible(false)} />
-        </SafeAreaView>
-      </Modal>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    marginBottom: 16,
-  },
   input: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    padding: 8,
-    marginTop: 8,
+    fontSize: getFontSize(24),
+    fontWeight: 'bold',
+  },
+  inputTitle: {
+    fontSize: getFontSize(14),
+    fontWeight: 'bold',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 32,
   },
   textArea: {
-    borderWidth: 1,
-    borderColor: 'gray',
+    backgroundColor: '#CFFFC5',
     borderRadius: 5,
     padding: 8,
-    marginTop: 8,
+    marginBottom: 16,
     height: 150,
   },
+  saveButton: {
+    padding: 16,
+    backgroundColor: '#32FB0A',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  aiButton: {
+    padding: 8,
+    backgroundColor: '#32FB0A',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   selector: {
+    borderWidth: 2,
+    borderColor: '#32FB0A',
+    borderRadius: 5,
+    padding: 8,
+    marginBottom: 8,
+    marginTop: 8,
+  },
+  dropdown: {
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    padding: 8,
     marginTop: 8,
+    maxHeight: 150,
   },
-  modalContainer: {
-    flex: 1,
-    padding: 16,
-  },
-  modalItem: {
-    padding: 16,
+  dropdownItem: {
+    padding: 8,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: 'gray',
   },
   previewContainer: {
     marginTop: 16,
+    marginBottom: 16,
+    borderLeftWidth: 2,
+    borderLeftColor: '#32FB0A',
+    padding: 8,
   },
 });
 

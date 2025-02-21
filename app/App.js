@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 
@@ -12,6 +12,7 @@ import Quiz from './pages/Quiz';
 import Notes from './pages/Notes';
 import NavBar from './components/NavBar';
 import LoggedInNavBar from './components/LoggedInNavBar';
+import NoteNavBar from './components/NoteNavBar';
 import Footer from './components/Footer';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -33,7 +34,7 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, padding: 16 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
         {user ? <LoggedInNavBar /> : <NavBar />}
         <Stack.Navigator screenOptions={styles.nav}>
@@ -43,11 +44,11 @@ export default function App() {
           <Stack.Screen name="Quiz" component={Quiz} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="NoteEditor" component={NoteEditor} />
+          <Stack.Screen name="NoteEditor" component={NoteEditor} options={{ header: (props) => <NoteNavBar {...props} /> }} />
           <Stack.Screen name="AccountSettings" component={AccountSettings} />
         </Stack.Navigator>
-        <Footer />
       </NavigationContainer>
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }

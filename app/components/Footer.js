@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 5
+    gap: 5,
+    marginTop: 50,
   },
   logoContainer: {
     flexDirection: 'row',

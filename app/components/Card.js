@@ -1,42 +1,45 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Cell } from 'react-native-tableview-simple';
 import { getFontSize } from '../responsiveFont';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Card = (props) => {
   return (
     <TouchableOpacity onPress={() => props.navigation.navigate(props.page)}>
-      <Cell
-        {...props}
-        backgroundColor={'transparent'}
-        highlightUnderlayColor={'transparent'}
-        cellContentView={
-          <View style={styles.card}>
-            <Text style={styles.cardText}>{props.title}</Text>
-            <Icon name="chevron-forward" size={20} color="black" style={styles.chevron} />
-          </View>
-        }
-      />
+      <LinearGradient
+        colors={['#33FD0A', '#1DAE00']}
+        style={styles.gradientBorder}
+      >
+        <View style={styles.card}>
+          <Text style={styles.cardText}>{props.title}</Text>
+          <Icon name="chevron-forward" size={20} color="black" style={styles.chevron} />
+        </View>
+      </LinearGradient>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  gradientBorder: {
+    padding: 5,
+    borderRadius: 100,
+    width: '100%',
+    backgroundColor: 'transparent',
+  },
   card: {
-    backgroundColor: '#E2E2E2',
-    padding: 16,
-    paddingTop: 100,
-    borderRadius: 10,
-    borderColor: 'black',
-    borderWidth: 1,
+    backgroundColor: 'white',
+    padding: 50,
+    borderRadius: 100,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   cardText: {
-    fontSize: getFontSize(18)
+    fontSize: getFontSize(18),
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   chevron: {
     marginLeft: 10

@@ -13,11 +13,11 @@ const NavBar = () => {
         <Image source={require('../assets/logo.png')} style={styles.logo} />
       </TouchableOpacity>
       <View style={styles.navButtons}>
-        <TouchableOpacity style={{ backgroundColor: 'black', padding: '5', borderRadius: 5 }} onPress={() => navigation.navigate('Login')}>
-          <Text style={[styles.navItem, { color: 'white' }]}>Login</Text>
+        <TouchableOpacity style={[styles.navItem, { borderWidth: 1, backgroundColor: 'transparent', borderColor: '#33FD0A' }]} onPress={() => navigation.navigate('Login')}>
+          <Text >Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-          <Text style={styles.navItem}>Sign Up</Text>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SignUp')}>
+          <Text >Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    borderColor: '#33FD0A',
+    borderBottomWidth: 2,
+    paddingRight: 15,
+    paddingLeft: 15,
   },
   logo: {
     width: 50,
@@ -41,7 +45,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   navItem: {
-    fontSize: getFontSize(12)
+    paddingRight: 10,
+    paddingLeft: 10,
+    padding: 5,
+    backgroundColor: '#33FD0A',
+    borderRadius: 100,
+    fontSize: getFontSize(16),
   }
 })
 

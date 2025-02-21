@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   subcontainer: {
     flexDirection: 'column',
     flex: 1,
-    gap: 10,
+    gap: 25,
     marginTop: 50,
   },
   nav: {
