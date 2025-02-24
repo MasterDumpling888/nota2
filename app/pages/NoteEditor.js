@@ -6,8 +6,8 @@ import PageBox from '../components/PageBox';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Markdown from 'react-native-markdown-display';
 import { getFontSize } from '../responsiveFont';
-import { addNote, getNote, updateNote, fetchFolders, fetchTags } from '../services/notesService';
-import { summarizeNote } from '../services/aiService';
+import { addNote, getNote, updateNote, fetchFolders, fetchCategories } from '../services/notesService';
+import { summarizeNote, generateReviewQuestions } from '../services/aiService';
 import Footer from '../components/Footer';
 
 function NoteEditor({ route, navigation }) {
@@ -15,11 +15,11 @@ function NoteEditor({ route, navigation }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [folder, setFolder] = useState('');
-  const [tag, setTag] = useState('');
+  const [category, setCategory] = useState('');
   const [folders, setFolders] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [folderDropdownVisible, setFolderDropdownVisible] = useState(false);
-  const [tagDropdownVisible, setTagDropdownVisible] = useState(false);
+  const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
 
   useEffect(() => {
     const loadNote = async () => {
@@ -29,7 +29,7 @@ function NoteEditor({ route, navigation }) {
           setTitle(note.title);
           setContent(note.content);
           setFolder(note.folder || '');
-          setTag(note.tag || '');
+          setCategory(note.category || '');
         } catch (error) {
           console.error('Failed to load note', error);
         }
@@ -45,23 +45,23 @@ function NoteEditor({ route, navigation }) {
       }
     };
 
-    const loadTags = async () => {
+    const loadCategories = async () => {
       try {
-        const tagsList = await fetchTags();
-        setTags(tagsList);
+        const categoriesList = await fetchCategories();
+        setCategories(categoriesList);
       } catch (error) {
-        console.error('Failed to load tags', error);
+        console.error('Failed to load categories', error);
       }
     };
 
     loadNote();
     loadFolders();
-    loadTags();
+    loadCategories();
   }, [noteId]);
 
   const handleSaveNote = async () => {
     try {
-      const note = { title, content, folder, tag };
+      const note = { title, content, folder, category };
       if (noteId) {
         await updateNote(noteId, note);
       } else {
@@ -82,14 +82,24 @@ function NoteEditor({ route, navigation }) {
     }
   };
 
+  const handleGenerateQuestions = async () => {
+    try {
+      const questions = await generateReviewQuestions(content);
+      console.log('Generated Questions:', questions);
+      // Handle displaying the questions to the user
+    } catch (error) {
+      console.error('Failed to generate review questions', error);
+    }
+  };
+
   const renderFolderItem = ({ item }) => (
     <TouchableOpacity onPress={() => { setFolder(item.id); setFolderDropdownVisible(false); }}>
       <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
 
-  const renderTagItem = ({ item }) => (
-    <TouchableOpacity onPress={() => { setTag(item.id); setTagDropdownVisible(false); }}>
+  const renderCategoryItem = ({ item }) => (
+    <TouchableOpacity onPress={() => { setCategory(item.id); setCategoryDropdownVisible(false); }}>
       <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
@@ -138,15 +148,15 @@ function NoteEditor({ route, navigation }) {
             )}
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.inputTitle}>Tag</Text>
-            <TouchableOpacity onPress={() => setTagDropdownVisible(!tagDropdownVisible)} style={styles.selector}>
-              <Text>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
+            <Text style={styles.inputTitle}>Category</Text>
+            <TouchableOpacity onPress={() => setCategoryDropdownVisible(!categoryDropdownVisible)} style={styles.selector}>
+              <Text>{category ? categories.find(c => c.id === category)?.name : 'Select Category'}</Text>
             </TouchableOpacity>
-            {tagDropdownVisible && (
+            {categoryDropdownVisible && (
               <View style={styles.dropdown}>
                 <FlatList
-                  data={tags}
-                  renderItem={renderTagItem}
+                  data={categories}
+                  renderItem={renderCategoryItem}
                   keyExtractor={(item) => item.id}
                 />
               </View>
@@ -154,6 +164,9 @@ function NoteEditor({ route, navigation }) {
           </View>
           <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote} >
             <Text style={{ fontWeight: 'bold', fontSize: getFontSize(18) }}>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.generateButton} onPress={handleGenerateQuestions} >
+            <Text style={{ fontWeight: 'bold', fontSize: getFontSize(18) }}>Generate Questions</Text>
           </TouchableOpacity>
           <Footer />
         </ScrollView>
@@ -185,6 +198,14 @@ const styles = StyleSheet.create({
     height: 150,
   },
   saveButton: {
+    padding: 16,
+    backgroundColor: '#32FB0A',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  generateButton: {
     padding: 16,
     backgroundColor: '#32FB0A',
     borderRadius: 5,
