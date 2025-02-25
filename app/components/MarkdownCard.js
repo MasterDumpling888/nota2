@@ -8,6 +8,7 @@ const MarkdownCard = ({ title, markdown, key }) => {
     <View style={styles.card} key={key}>
       <Text style={styles.cardTitle}>{title}</Text>
       <View style={styles.cardContent}>
+        <Text style={styles.cardText}>{markdown}</Text>
         <Markdown>{markdown}</Markdown>
       </View>
     </View>
