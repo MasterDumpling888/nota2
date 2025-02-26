@@ -1,0 +1,6 @@
+module Pods_nota2 {
+  umbrella header "Pods-nota2-umbrella.h"
+
+  export *
+  module * { export * }
+}
