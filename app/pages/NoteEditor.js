@@ -14,6 +14,7 @@ function NoteEditor({ route, navigation }) {
   const { noteId } = route.params || {};
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [summarizedContent, setSummarizedContent] = useState('');
   const [folder, setFolder] = useState('');
   const [tag, setTag] = useState('');
   const [folders, setFolders] = useState([]);
@@ -28,6 +29,7 @@ function NoteEditor({ route, navigation }) {
           const note = await getNote(noteId);
           setTitle(note.title);
           setContent(note.content);
+          setSummarizedContent(note.summary || '');
           setFolder(note.folder || '');
           setTag(note.tag || '');
         } catch (error) {
@@ -61,7 +63,14 @@ function NoteEditor({ route, navigation }) {
 
   const handleSaveNote = async () => {
     try {
-      const note = { title, content, folder, tag };
+      const note = { 
+        title, 
+        content, 
+        folder, 
+        tag,
+        summary: summarizedContent 
+      };
+      
       if (noteId) {
         await updateNote(noteId, note);
       } else {
@@ -76,7 +85,7 @@ function NoteEditor({ route, navigation }) {
   const handleSummarizeNote = async () => {
     try {
       const summary = await summarizeNote(content);
-      setContent(summary);
+      setSummarizedContent(summary);
     } catch (error) {
       console.error('Failed to summarize note', error);
     }
@@ -109,6 +118,10 @@ function NoteEditor({ route, navigation }) {
             <TouchableOpacity style={styles.aiButton} onPress={handleSummarizeNote} >
               <Icon name="sparkles" size={24} color="black" style={styles.closeIcon} />
             </TouchableOpacity>
+          </View>
+          <View style={styles.previewContainer}>
+            <Text style={styles.inputTitle}>Summary:</Text>
+            <Text>{summarizedContent}</Text>
           </View>
           <View style={styles.previewContainer}>
             <Text style={styles.inputTitle}>Preview:</Text>

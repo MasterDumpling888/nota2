@@ -10,14 +10,18 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.5.0",
+    "@huggingface/transformers": "^3.3.3",
     "@react-native-async-storage/async-storage": "^2.1.1",
     "@react-native-masked-view/masked-view": "0.3.2",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/stack": "^7.1.1",
     "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "expo": "~52.0.30",
     "expo-linear-gradient": "~14.0.2",
     "expo-status-bar": "~2.0.1",
+    "expo-system-ui": "~4.0.8",
+    "expo-updates": "~0.27.1",
     "firebase": "^11.3.1",
     "firebase-admin": "^13.1.0",
     "openai": "^4.85.1",
@@ -28,13 +32,12 @@
     "react-native-tab-view": "^4.0.5",
     "react-native-tableview-simple": "^4.4.1",
     "react-navigation": "^5.0.0",
-    "expo-updates": "~0.27.1",
-    "expo-system-ui": "~4.0.8"
+    "torch": "^0.2.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "typescript": "^5.3.3",
-    "@types/react": "~18.3.12"
+    "@types/react": "~18.3.12",
+    "typescript": "^5.3.3"
   },
   "private": true
 }
