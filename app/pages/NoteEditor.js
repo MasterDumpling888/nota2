@@ -6,8 +6,8 @@ import PageBox from '../components/PageBox';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Markdown from 'react-native-markdown-display';
 import { getFontSize } from '../responsiveFont';
-import { addNote, getNote, updateNote, fetchFolders, fetchTags } from '../services/notesService';
-import { summarizeNote } from '../services/aiService';
+import { addNote, getNote, updateNote, fetchFolders, fetchCategories } from '../services/notesService';
+import { summarizeNote, generateReviewQuestions } from '../services/aiService';
 import Footer from '../components/Footer';
 
 function NoteEditor({ route, navigation }) {
@@ -16,11 +16,11 @@ function NoteEditor({ route, navigation }) {
   const [content, setContent] = useState('');
   const [summarizedContent, setSummarizedContent] = useState('');
   const [folder, setFolder] = useState('');
-  const [tag, setTag] = useState('');
+  const [category, setCategory] = useState('');
   const [folders, setFolders] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [folderDropdownVisible, setFolderDropdownVisible] = useState(false);
-  const [tagDropdownVisible, setTagDropdownVisible] = useState(false);
+  const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
 
   useEffect(() => {
     const loadNote = async () => {
@@ -31,7 +31,7 @@ function NoteEditor({ route, navigation }) {
           setContent(note.content);
           setSummarizedContent(note.summary || '');
           setFolder(note.folder || '');
-          setTag(note.tag || '');
+          setCategory(note.category || '');
         } catch (error) {
           console.error('Failed to load note', error);
         }
@@ -47,18 +47,18 @@ function NoteEditor({ route, navigation }) {
       }
     };
 
-    const loadTags = async () => {
+    const loadCategories = async () => {
       try {
-        const tagsList = await fetchTags();
-        setTags(tagsList);
+        const categoriesList = await fetchCategories();
+        setCategories(categoriesList);
       } catch (error) {
-        console.error('Failed to load tags', error);
+        console.error('Failed to load categories', error);
       }
     };
 
     loadNote();
     loadFolders();
-    loadTags();
+    loadCategories();
   }, [noteId]);
 
   const handleSaveNote = async () => {
@@ -91,14 +91,24 @@ function NoteEditor({ route, navigation }) {
     }
   };
 
+  const handleGenerateQuestions = async () => {
+    try {
+      const questions = await generateReviewQuestions(content);
+      console.log('Generated Questions:', questions);
+      // Handle displaying the questions to the user
+    } catch (error) {
+      console.error('Failed to generate review questions', error);
+    }
+  };
+
   const renderFolderItem = ({ item }) => (
     <TouchableOpacity onPress={() => { setFolder(item.id); setFolderDropdownVisible(false); }}>
       <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
 
-  const renderTagItem = ({ item }) => (
-    <TouchableOpacity onPress={() => { setTag(item.id); setTagDropdownVisible(false); }}>
+  const renderCategoryItem = ({ item }) => (
+    <TouchableOpacity onPress={() => { setCategory(item.id); setCategoryDropdownVisible(false); }}>
       <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
@@ -165,11 +175,11 @@ function NoteEditor({ route, navigation }) {
                 color="white"
               />
             </TouchableOpacity>
-            {tagDropdownVisible && (
+            {categoryDropdownVisible && (
               <View style={styles.dropdown}>
                 <FlatList
-                  data={tags}
-                  renderItem={renderTagItem}
+                  data={categories}
+                  renderItem={renderCategoryItem}
                   keyExtractor={(item) => item.id}
                 />
               </View>

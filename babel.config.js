@@ -1,3 +1,4 @@
+
 // const { genkit } = require("genkit");
 // const { googleAI, gemini } = require("@genkit-ai/googleai");
 
@@ -18,6 +19,7 @@
 //     ],
 //   };
 // };
+
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -32,3 +34,4 @@ module.exports = function (api) {
     // ],
   };
 };
+
