@@ -72,36 +72,36 @@ function AccountSettings({ navigation }) {
         <PageBox title="Account Settings" onClose={() => navigation.goBack()}>
           <View style={styles.container}>
             <View style={styles.userContainer}>
-              <Icon name="person-circle-outline" size={56} color="black" />
+              <Icon name="person-circle-outline" size={56} color="white" />
               <TextInput
                 style={styles.input}
                 value={newUsername || username}
                 onChangeText={setNewUsername}
                 onBlur={handleUpdateUsername}
               />
-              <Icon name="pencil" size={30} color="black" />
+              <Icon name="pencil" size={30} color="white" />
             </View>
             <View style={styles.subContainer}>
-              <Icon name="heart-outline" size={30} color="black" />
+              <Icon name="heart-outline" size={30} color="#33FD0A" />
               <Text style={styles.subText}>My Space</Text>
             </View>
             <View style={styles.sectionContainer}>
               <TouchableOpacity style={styles.sectionRow} onPress={() => navigation.navigate('Notes')}>
-                <Icon name="document-text-outline" size={24} color="black" />
+                <Icon name="document-text-outline" size={24} color="#33FD0A" />
                 <Text style={styles.sectionText}>Notes</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.sectionRow} onPress={() => navigation.navigate('Quizes')}>
-                <Icon name="book-outline" size={24} color="black" />
+                <Icon name="book-outline" size={24} color="#33FD0A" />
                 <Text style={styles.sectionText}>Quizes</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.subContainer}>
-              <Icon name="cog" size={30} color="black" />
+              <Icon name="cog" size={30} color="#33FD0A" />
               <Text style={styles.subText}>Settings</Text>
             </View>
             <View style={styles.sectionContainer}>
               <TouchableOpacity style={styles.sectionRow} onPress={handleSignOut}>
-                <Icon name="log-out-outline" size={24} color="black" />
+                <Icon name="log-out-outline" size={24} color="#33FD0A" />
                 <Text style={styles.sectionText}>Sign Out</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.sectionRow} onPress={handleDeleteAccount}>
@@ -126,39 +126,45 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: getFontSize(16),
+    color: 'white',
+    fontFamily: 'Raleway-SemiBold',
   },
   input: {
     flex: 1,
     fontSize: getFontSize(24),
-    fontWeight: 'bold',
+    color: 'white',
+    fontFamily: 'Raleway-Bold',
   },
   userContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+    gap: 10
   },
   subContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
-    gap: 4
+    gap: 10
   },
   sectionContainer: {
-    backgroundColor: '#F6F6F6',
-    padding: 16,
+    borderWidth: 1,
+    borderColor: '#33FD0A',
     borderRadius: 5,
     marginBottom: 16,
   },
   sectionRow: {
-    padding: 8,
+    padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#D9D9D9',
+    borderBottomColor: '#33FD0A',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4
+    gap: 10
   },
   sectionText: {
     fontSize: getFontSize(14),
+    color: 'white',
+    fontFamily: 'Raleway-SemiBold',
   },
 });
 

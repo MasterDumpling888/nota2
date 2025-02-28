@@ -33,7 +33,6 @@ function Login({ navigation }) {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            placeholder='Type in your email here'
           />
         </View>
         <View style={styles.inputContainer}>
@@ -59,17 +58,23 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#32FB0A',
+    borderColor: '#33FD0A',
     borderRadius: 5,
     padding: 8,
     marginTop: 8,
-    backgroundColor: '#CFFFC5'
+    fontSize: getFontSize(14),
+    textAlign: 'left',
+    color: 'white',
+    fontFamily: 'Raleway-SemiBold',
   },
   inputText: {
     fontSize: getFontSize(14),
+    textAlign: 'left',
+    color: 'white',
+    fontFamily: 'Raleway-Regular',
   },
   loginButton: {
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: getFontSize(16),
-    fontWeight: 'bold'
+    fontFamily: 'Raleway-SemiBold',
   }
 });
 

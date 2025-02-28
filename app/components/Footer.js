@@ -6,9 +6,6 @@ const Footer = () => {
   return (
     <View style={styles.footer}>
       <Image source={require('../assets/footer-logo.png')} style={styles.logo} />
-      <TouchableOpacity onPress={() => navigation.navigate('About')}>
-        <Text style={styles.footerLinks}>About us</Text>
-      </TouchableOpacity>
       <Text style={styles.footerText}>© 2025 Nota. All rights reserved.</Text>
     </View>
   );

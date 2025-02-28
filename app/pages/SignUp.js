@@ -47,7 +47,6 @@ function SignUp({ navigation }) {
             style={styles.input}
             value={username}
             onChangeText={setUsername}
-            placeholder='Type in your username here'
           />
         </View>
         <View style={styles.inputContainer}>
@@ -58,7 +57,6 @@ function SignUp({ navigation }) {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            placeholder='Type in your email here'
           />
         </View>
         <View style={styles.inputContainer}>
@@ -93,17 +91,23 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#32FB0A',
+    borderColor: '#33FD0A',
     borderRadius: 5,
     padding: 8,
     marginTop: 8,
-    backgroundColor: '#CFFFC5'
+    fontSize: getFontSize(14),
+    textAlign: 'left',
+    color: 'white',
+    fontFamily: 'Raleway-SemiBold',
   },
   inputText: {
     fontSize: getFontSize(14),
+    textAlign: 'left',
+    color: 'white',
+    fontFamily: 'Raleway-Regular',
   },
   signUpButton: {
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
   },
   signUpText: {
     fontSize: getFontSize(16),
-    fontWeight: 'bold'
+    fontFamily: 'Raleway-SemiBold',
   }
 });
 

@@ -8,7 +8,7 @@ const PageBox = ({ title, children, onClose }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={onClose} style={styles.pageTitle}>
-          <Icon name="chevron-back-outline" size={24} color="black" style={styles.closeIcon} />
+          <Icon name="chevron-back-outline" size={24} color="#33FD0A" style={styles.closeIcon} />
           <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>
       </View>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: 'white',
+    backgroundColor: '#181818',
   },
   header: {
     flexDirection: 'row',
@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: getFontSize(18
-
-    ),
-    fontWeight: 'bold',
+    fontSize: getFontSize(18),
+    fontFamily: 'Raleway-SemiBold',
+    color: '#33FD0A',
     marginBottom: 16,
   },
   closeIcon: {

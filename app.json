@@ -3,6 +3,7 @@
     "name": "nota2",
     "slug": "nota2",
     "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
@@ -12,17 +13,33 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "jsEngine": "hermes",
     "ios": {
-      "supportsTablet": true
+      "jsEngine": "jsc",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.masterdumpling.nota2"
     },
     "android": {
+      "jsEngine": "jsc",
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.masterdumpling.nota2"
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6e0a6703-ba62-4d7c-8556-d71be18beff8"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/6e0a6703-ba62-4d7c-8556-d71be18beff8"
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

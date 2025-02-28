@@ -2,44 +2,112 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { getFontSize } from '../responsiveFont';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const Card = (props) => {
-  return (
-    <TouchableOpacity onPress={() => props.navigation.navigate(props.page)}>
-      <LinearGradient
-        colors={['#33FD0A', '#1DAE00']}
-        style={styles.gradientBorder}
-      >
-        <View style={styles.card}>
+  if (props.isLeft) {
+
+    return (
+      <TouchableOpacity onPress={() => props.navigation.navigate(props.page)} style={styles.card}>
+        <View style={styles.cardInnerStacked}>
           <Text style={styles.cardText}>{props.title}</Text>
-          <Icon name="chevron-forward" size={20} color="black" style={styles.chevron} />
+          <Icon name="chevron-forward" size={20} color="white" style={styles.chevron} />
         </View>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
+        <View style={styles.cardInner} />
+
+      </TouchableOpacity>
+    );
+  } else {
+    return (
+      <TouchableOpacity onPress={() => props.navigation.navigate(props.page)} style={styles.cardRight}>
+        <View style={styles.cardInnerStackedRight}>
+          <Text style={styles.cardText}>{props.title}</Text>
+          <Icon name="chevron-forward" size={20} color="white" style={styles.chevron} />
+        </View>
+        <View style={styles.cardInnerRight} />
+
+      </TouchableOpacity>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  gradientBorder: {
-    padding: 5,
-    borderRadius: 100,
-    width: '100%',
-    backgroundColor: 'transparent',
-  },
   card: {
-    backgroundColor: 'white',
-    padding: 50,
-    borderRadius: 100,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    position: 'relative',
+    marginBottom: 40,
+  },
+  cardRight: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    position: 'relative',
+    marginBottom: 40,
+  },
+  cardInner: {
+    backgroundColor: '#181818',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
+    padding: 40,
+    width: '75%',
+    top: 0,
+    left: 0,
+    zIndex: 0,
+  },
+  cardInnerRight: {
+    backgroundColor: '#181818',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
+    padding: 40,
+    width: '75%',
+    top: 0,
+    right: 0,
+    zIndex: 0,
+  },
+  cardInnerStacked: {
+    backgroundColor: '#181818',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
+    padding: 30,
+    width: '75%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'absolute',
+    gap: 8,
+    top: 10,
+    left: 10,
+    zIndex: 1,
+  },
+  cardInnerStackedRight: {
+    backgroundColor: '#181818',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
+    padding: 30,
+    width: '75%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'absolute',
+    gap: 8,
+    top: 10,
+    right: 10,
+    zIndex: 1,
   },
   cardText: {
-    fontSize: getFontSize(18),
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontSize: getFontSize(24),
+    textAlign: 'left',
+    color: 'white',
+    fontFamily: 'Raleway-SemiBold',
+  },
+  cardContent: {
+    fontSize: getFontSize(14),
+    textAlign: 'left',
+    color: 'white',
+    fontFamily: 'Raleway-Regular',
   },
   chevron: {
     marginLeft: 10
