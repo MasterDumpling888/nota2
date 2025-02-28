@@ -48,4 +48,4 @@ with_node \
   --target "/Users/masterdumpling/Documents/MD Final/nota2/ios/Pods/Target Support Files/Pods-nota2/ExpoModulesProvider.swift" \
   --entitlement "/Users/masterdumpling/Documents/MD Final/nota2/ios/nota2/nota2.entitlements" \
   --platform "apple" \
-  --packages "expo" "expo-asset" "expo-constants" "expo-eas-client" "expo-file-system" "expo-font" "expo-keep-awake" "expo-linear-gradient" "expo-updates"
+  --packages "expo" "expo-asset" "expo-constants" "expo-dev-launcher" "expo-dev-menu" "expo-file-system" "expo-font" "expo-keep-awake" "expo-linear-gradient"

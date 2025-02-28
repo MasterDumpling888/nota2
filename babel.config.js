@@ -1,6 +1,3 @@
-const { genkit } = require("genkit");
-const { googleAI, gemini } = require("@genkit-ai/googleai");
-
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -10,8 +7,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            genkit: 'genkit/lib',
-            '@genkit-ai/googleai': '@genkit-ai/googleai/lib',
+            // Add any necessary aliases here
           },
         },
       ],
