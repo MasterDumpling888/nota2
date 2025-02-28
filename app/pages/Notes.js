@@ -114,9 +114,9 @@ const Notes = ({ navigation }) => {
           style={styles.noteContainer}
           onPress={() => navigation.navigate('NoteEditor', { noteId: note.id })}
         >
-          <Icon name="document-text-outline" size={24} color="black" />
+          <Icon name="document-text-outline" size={24} color="white" />
           <Text style={styles.noteTitle}>{note.title}</Text>
-          {/* <Text style={styles.noteContent}>{note.content}</Text> */}
+          <Text style={styles.noteContent}>{note.summary || 'Summary'}</Text>
         </TouchableOpacity>
       ));
   };
@@ -130,9 +130,9 @@ const Notes = ({ navigation }) => {
           style={styles.noteContainer}
           onPress={() => navigation.navigate('NoteEditor', { noteId: note.id })}
         >
-          <Icon name="document-text-outline" size={24} color="black" />
+          <Icon name="document-text-outline" size={24} color="white" />
           <Text style={styles.noteTitle}>{note.title}</Text>
-          {/* <Text style={styles.noteContent}>{note.content}</Text> */}
+          <Text style={styles.noteContent}>{note.summary || 'Summary'}</Text>
         </TouchableOpacity>
       ));
   };
@@ -146,15 +146,15 @@ const Notes = ({ navigation }) => {
             style={styles.noteContainer}
             onPress={() => navigation.navigate('NoteEditor', { noteId: note.id })}
           >
-            <Icon name="document-text-outline" size={24} color="black" />
+            <Icon name="document-text-outline" size={24} color="white" />
             <Text style={styles.noteTitle}>{note.title}</Text>
-            <Text style={styles.noteContent}>{note.content}</Text>
+            <Text style={styles.noteContent}>{note.summary || 'Summary'}</Text>
           </TouchableOpacity>
         ));
       case 'folders':
         return folders.map((folder, index) => (
           <View key={index} style={styles.folderContainer}>
-            <Icon name="folder-outline" size={24} color="black" />
+            <Icon name="folder-outline" size={24} color="white" />
             <Text style={styles.folderTitle}>{folder.name}</Text>
             {renderNotesByFolder(folder.id)}
           </View>
@@ -162,7 +162,7 @@ const Notes = ({ navigation }) => {
       case 'tags':
         return tags.map((tag, index) => (
           <View key={index} style={styles.tagContainer}>
-            <Icon name="pricetag-outline" size={24} color="black" />
+            <Icon name="pricetag-outline" size={24} color="white" />
             <Text style={styles.tagTitle}>{tag.name}</Text>
             {renderNotesByTag(tag.id)}
           </View>
@@ -180,25 +180,25 @@ const Notes = ({ navigation }) => {
             style={[styles.displayButton, displayMode === 'notes' && styles.activeButton]}
             onPress={() => setDisplayMode('notes')}
           >
-            <Icon name="document-text-outline" size={24} color="black" />
+            <Icon name="document-text-outline" size={24} color="#33FD0A" />
             <Text style={styles.buttonText}>Notes</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.displayButton, displayMode === 'folders' && styles.activeButton]}
             onPress={() => setDisplayMode('folders')}
           >
-            <Icon name="folder-outline" size={24} color="black" />
+            <Icon name="folder-outline" size={24} color="#33FD0A" />
             <Text style={styles.buttonText}>Folders</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.displayButton, displayMode === 'tags' && styles.activeButton]}
             onPress={() => setDisplayMode('tags')}
           >
-            <Icon name="pricetag-outline" size={24} color="black" />
+            <Icon name="pricetag-outline" size={24} color="#33FD0A" />
             <Text style={styles.buttonText}>Tags</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {renderContent()}
         </ScrollView>
         <View style={styles.fabContainer}>
@@ -287,43 +287,53 @@ const styles = StyleSheet.create({
   noteContainer: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#32FB0A',
+    borderBottomColor: '#33FD0A',
+    gap: 8,
   },
   noteTitle: {
     fontSize: getFontSize(18),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold',
+    color: 'white',
     marginBottom: 8,
   },
   noteContent: {
     fontSize: getFontSize(14),
+    fontFamily: 'Raleway-Regular',
+    color: 'white',
   },
   folderContainer: {
     padding: 16,
     borderWidth: 1,
-    borderColor: '#32FB0A',
+    borderColor: '#33FD0A',
     borderRadius: 10,
     marginTop: 10,
+    gap: 8,
   },
   folderTitle: {
     fontSize: getFontSize(20),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold',
+    color: 'white',
     marginBottom: 8,
+    paddingBottom: 8,
     borderBottomWidth: 1,
-    borderBottomColor: '#32FB0A'
+    borderBottomColor: '#33FD0A'
   },
   tagContainer: {
     padding: 16,
     borderWidth: 1,
-    borderColor: '#32FB0A',
+    borderColor: '#33FD0A',
     borderRadius: 10,
-    marginTop: 10
+    marginTop: 10,
+    gap: 8,
   },
   tagTitle: {
     fontSize: getFontSize(20),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold',
+    color: 'white',
     marginBottom: 8,
+    paddingBottom: 8,
     borderBottomWidth: 1,
-    borderBottomColor: '#32FB0A'
+    borderBottomColor: '#33FD0A'
   },
   inputContainer: {
     marginBottom: 16,
@@ -331,14 +341,15 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#32FB0A',
+    borderColor: '#33FD0A',
+    backgroundColor: '#33FD0Aa5',
     borderRadius: 5,
     padding: 8,
     marginTop: 8,
     fontSize: getFontSize(16),
   },
   saveButton: {
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     borderRadius: 5,
     padding: 10,
     marginTop: 8,
@@ -347,7 +358,7 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: 'black',
     fontSize: getFontSize(16),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold',
   },
   fabContainer: {
     justifyContent: 'flex-end',
@@ -358,7 +369,7 @@ const styles = StyleSheet.create({
     gap: 45
   },
   fab: {
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     borderRadius: 50,
     width: 65,
     height: 65,
@@ -366,7 +377,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   fabOption: {
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     borderRadius: 50,
     width: 65,
     height: 65,
@@ -378,7 +389,7 @@ const styles = StyleSheet.create({
   fabOptionText: {
     color: 'black',
     fontSize: getFontSize(14),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold',
     textAlign: 'center'
   },
   buttonContainer: {
@@ -390,18 +401,19 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: '#32FB0A',
+    borderColor: '#33FD0A',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
   activeButton: {
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0Aa3',
+    color: 'black',
   },
   buttonText: {
-    color: 'black',
+    color: 'white',
     fontSize: getFontSize(15),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold'
   },
 });
 

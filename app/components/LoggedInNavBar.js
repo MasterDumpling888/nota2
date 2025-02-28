@@ -14,7 +14,7 @@ const LoggedInNavBar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigation.navigate('Login');
+      navigation.navigate('Home');
     } catch (error) {
       console.error('Failed to log out', error);
     }
@@ -27,24 +27,24 @@ const LoggedInNavBar = () => {
       </TouchableOpacity>
       <View style={styles.navButtons}>
         <TouchableOpacity onPress={() => { setMenuVisible(!menuVisible); setMenuProfileVisible(false); }}>
-          <Icon name="menu" size={30} color="black" />
+          <Icon name="menu" size={30} color="white" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
           setMenuProfileVisible(!menuProfileVisible);
           setMenuVisible(false);
         }} style={styles.profileIcon}>
-          <Icon name="person-circle-outline" size={30} color="black" />
+          <Icon name="person-circle-outline" size={30} color="white" />
         </TouchableOpacity>
       </View>
       {menuVisible && (
-        <View style={styles.menu}>
+        <View style={[styles.menu, { right: 85 }]}>
           <TouchableOpacity onPress={() => { navigation.navigate('Home'); setMenuVisible(false); }}>
             <Text style={styles.menuItem}>Home</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => { navigation.navigate('Notes'); setMenuVisible(false); }}>
             <Text style={styles.menuItem}>Notes</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => { navigation.navigate('Quiz'); setMenuVisible(false); }}>
+          <TouchableOpacity onPress={() => { navigation.navigate('Quizes'); setMenuVisible(false); }}>
             <Text style={styles.menuItem}>Quiz</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => { navigation.navigate('MarkdownGuide'); setMenuVisible(false); }}>
@@ -76,13 +76,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderColor: '#33FD0A',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     paddingRight: 15,
     paddingLeft: 15,
+    backgroundColor: '#181818',
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
   },
   navButtons: {
@@ -93,22 +94,25 @@ const styles = StyleSheet.create({
   menu: {
     position: 'absolute',
     top: 50,
-    right: 10,
-    backgroundColor: 'white',
-    borderRadius: 5,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    right: 35,
+    backgroundColor: '#181818',
+    borderRightWidth: 3,
+    borderColor: '#33FD0A',
+    paddingHorizontal: 0,
     zIndex: 2,
   },
   menuItem: {
+    flex: 1,
     paddingVertical: 10,
-    paddingHorizontal: 20,
-    fontSize: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    paddingLeft: 20,
+    paddingRight: 5,
+    fontSize: getFontSize(14),
+    color: 'white',
+    borderBottomWidth: 2,
+    borderBottomColor: '#33FD0A',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+    fontFamily: 'Raleway-Regular',
   },
   navItem: {
     fontSize: getFontSize(12)

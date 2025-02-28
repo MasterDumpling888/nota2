@@ -63,14 +63,14 @@ function NoteEditor({ route, navigation }) {
 
   const handleSaveNote = async () => {
     try {
-      const note = { 
-        title, 
-        content, 
-        folder, 
+      const note = {
+        title,
+        content,
+        folder,
         tag,
-        summary: summarizedContent 
+        summary: summarizedContent
       };
-      
+
       if (noteId) {
         await updateNote(noteId, note);
       } else {
@@ -107,7 +107,7 @@ function NoteEditor({ route, navigation }) {
     <SafeAreaView style={{ flex: 1 }}>
       {/* <NoteNavBar title={title || "New Note"} /> */}
       <PageBox title={noteId ? "Edit Note" : "Create Note"} onClose={() => navigation.goBack()}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <TextInput
               style={styles.input}
@@ -121,11 +121,11 @@ function NoteEditor({ route, navigation }) {
           </View>
           <View style={styles.previewContainer}>
             <Text style={styles.inputTitle}>Summary:</Text>
-            <Text>{summarizedContent}</Text>
+            <Text style={styles.outputContent}>{summarizedContent}</Text>
           </View>
           <View style={styles.previewContainer}>
             <Text style={styles.inputTitle}>Preview:</Text>
-            <Markdown>{content}</Markdown>
+            <Markdown style={markdownStyles}>{content}</Markdown>
           </View>
           <TextInput
             style={styles.textArea}
@@ -138,7 +138,12 @@ function NoteEditor({ route, navigation }) {
           <View style={styles.inputContainer}>
             <Text style={styles.inputTitle}>Folder</Text>
             <TouchableOpacity onPress={() => setFolderDropdownVisible(!folderDropdownVisible)} style={styles.selector}>
-              <Text>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
+              <Text style={styles.selectorText}>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
+              <Icon
+                name="chevron-down-outline"
+                size={20}
+                color="white"
+              />
             </TouchableOpacity>
             {folderDropdownVisible && (
               <View style={styles.dropdown}>
@@ -153,7 +158,12 @@ function NoteEditor({ route, navigation }) {
           <View style={styles.inputContainer}>
             <Text style={styles.inputTitle}>Tag</Text>
             <TouchableOpacity onPress={() => setTagDropdownVisible(!tagDropdownVisible)} style={styles.selector}>
-              <Text>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
+              <Text style={styles.selectorText}>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
+              <Icon
+                name="chevron-down-outline"
+                size={20}
+                color="white"
+              />
             </TouchableOpacity>
             {tagDropdownVisible && (
               <View style={styles.dropdown}>
@@ -166,7 +176,7 @@ function NoteEditor({ route, navigation }) {
             )}
           </View>
           <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote} >
-            <Text style={{ fontWeight: 'bold', fontSize: getFontSize(18) }}>Save</Text>
+            <Text style={styles.saveButtonText}>Save</Text>
           </TouchableOpacity>
           <Footer />
         </ScrollView>
@@ -178,11 +188,14 @@ function NoteEditor({ route, navigation }) {
 const styles = StyleSheet.create({
   input: {
     fontSize: getFontSize(24),
-    fontWeight: 'bold',
+    fontFamily: 'Raleway-SemiBold',
+    color: 'white',
   },
   inputTitle: {
-    fontSize: getFontSize(14),
-    fontWeight: 'bold',
+    fontSize: getFontSize(18),
+    fontFamily: 'Raleway-SemiBold',
+    color: 'white',
+    marginBottom: 8,
   },
   header: {
     flexDirection: 'row',
@@ -191,38 +204,55 @@ const styles = StyleSheet.create({
     paddingRight: 32,
   },
   textArea: {
-    backgroundColor: '#CFFFC5',
+    backgroundColor: '#33FD0Aa1',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
     borderRadius: 5,
     padding: 8,
     marginBottom: 16,
-    height: 150,
+    fontSize: getFontSize(16),
+    fontFamily: 'Raleway-SemiBold',
+    color: 'white'
+  },
+  outputContent: {
+    color: 'white',
+    fontSize: getFontSize(16),
+    fontFamily: 'Raleway-Regular'
   },
   saveButton: {
     padding: 16,
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 16,
   },
+  saveButtonText: { fontFamily: 'Raleway-SemiBold', fontSize: getFontSize(18) },
   aiButton: {
     padding: 8,
-    backgroundColor: '#32FB0A',
+    backgroundColor: '#33FD0A',
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
   selector: {
-    borderWidth: 2,
-    borderColor: '#32FB0A',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
     borderRadius: 5,
     padding: 8,
     marginBottom: 8,
     marginTop: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  selectorText: {
+    fontSize: getFontSize(14),
+    color: 'white',
+    fontFamily: 'Raleway-Regular',
   },
   dropdown: {
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#33FD0A',
     borderRadius: 5,
     marginTop: 8,
     maxHeight: 150,
@@ -230,15 +260,78 @@ const styles = StyleSheet.create({
   dropdownItem: {
     padding: 8,
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    borderBottomColor: '#33FD0A',
+    fontSize: getFontSize(14),
+    color: 'white',
+    fontFamily: 'Raleway-Regular',
   },
   previewContainer: {
     marginTop: 16,
     marginBottom: 16,
     borderLeftWidth: 2,
-    borderLeftColor: '#32FB0A',
+    borderLeftColor: '#33FD0A',
     padding: 8,
   },
+
 });
+
+const markdownStyles = {
+  body: {
+    color: 'white',
+    fontSize: getFontSize(16),
+  },
+  strong: {
+    color: 'white',
+    fontFamily: 'Raleway-Bold',
+  },
+  em: {
+    color: 'white',
+    fontFamily: 'Raleway-Italic',
+  },
+  heading1: {
+    color: 'white',
+    fontSize: getFontSize(24),
+    fontFamily: 'Raleway-Bold',
+  },
+  heading2: {
+    color: 'white',
+    fontSize: getFontSize(20),
+    fontFamily: 'Raleway-Bold',
+  },
+  heading3: {
+    color: 'white',
+    fontSize: getFontSize(18),
+    fontFamily: 'Raleway-Bold',
+  },
+  heading4: {
+    color: 'white',
+    fontSize: getFontSize(16),
+    fontFamily: 'Raleway-Bold',
+  },
+  heading5: {
+    color: 'white',
+    fontSize: getFontSize(14),
+    fontFamily: 'Raleway-Bold',
+  },
+  heading6: {
+    color: 'white',
+    fontSize: getFontSize(12),
+    fontFamily: 'Raleway-Bold',
+  },
+  paragraph: {
+    color: 'white',
+    fontSize: getFontSize(16),
+    fontFamily: 'Raleway-Regular',
+  },
+
+  link: {
+    color: '#33FD0A',
+  },
+  list_item: {
+    color: 'white',
+    fontSize: getFontSize(16),
+    fontFamily: 'Raleway-Regular',
+  },
+};
 
 export default NoteEditor;

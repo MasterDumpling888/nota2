@@ -13,11 +13,11 @@ const NavBar = () => {
         <Image source={require('../assets/logo.png')} style={styles.logo} />
       </TouchableOpacity>
       <View style={styles.navButtons}>
-        <TouchableOpacity style={[styles.navItem, { borderWidth: 1, backgroundColor: 'transparent', borderColor: '#33FD0A' }]} onPress={() => navigation.navigate('Login')}>
-          <Text >Login</Text>
+        <TouchableOpacity style={[styles.navItem, { borderWidth: 0 }]} onPress={() => navigation.navigate('Login')}>
+          <Text style={[styles.navItemText, { color: '#33FD0A' }]}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SignUp')}>
-          <Text >Sign Up</Text>
+          <Text style={styles.navItemText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -48,9 +48,14 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingLeft: 10,
     padding: 5,
-    backgroundColor: '#33FD0A',
+    borderWidth: 1,
+    borderColor: '#33FD0A',
     borderRadius: 100,
-    fontSize: getFontSize(16),
+  },
+  navItemText: {
+    fontSize: getFontSize(12),
+    color: 'white',
+    fontFamily: 'Raleway-Regular',
   }
 })
 

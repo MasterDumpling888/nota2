@@ -1,31 +1,31 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { getFontSize } from '../responsiveFont';
-import Icon from 'react-native-vector-icons/Ionicons';
 
-const Card = (props) => {
+const ContentCard = (props) => {
   if (props.isLeft) {
-
     return (
-      <TouchableOpacity onPress={() => props.navigation.navigate(props.page)} style={styles.card}>
+      <View style={styles.card}>
         <View style={styles.cardInnerStacked}>
           <Text style={styles.cardText}>{props.title}</Text>
-          <Icon name="chevron-forward" size={20} color="white" style={styles.chevron} />
+          <Text style={styles.cardContent}>
+            {props.content}
+          </Text>
         </View>
         <View style={styles.cardInner} />
-
-      </TouchableOpacity>
+      </View>
     );
   } else {
     return (
-      <TouchableOpacity onPress={() => props.navigation.navigate(props.page)} style={styles.cardRight}>
+      <View style={styles.cardRight}>
         <View style={styles.cardInnerStackedRight}>
-          <Text style={styles.cardText}>{props.title}</Text>
-          <Icon name="chevron-forward" size={20} color="white" style={styles.chevron} />
+          <Text style={[styles.cardText, { textAlign: 'right' }]}>{props.title}</Text>
+          <Text style={[styles.cardContent, { textAlign: 'right' }]}>
+            {props.content}
+          </Text>
         </View>
         <View style={styles.cardInnerRight} />
-
-      </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -71,11 +71,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#181818',
     borderWidth: 1,
     borderColor: '#33FD0A',
-    padding: 30,
+    padding: 10,
     width: '75%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    flexDirection: 'column',
     position: 'absolute',
     gap: 8,
     top: 10,
@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#181818',
     borderWidth: 1,
     borderColor: '#33FD0A',
-    padding: 30,
+    padding: 10,
     width: '75%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    flexDirection: 'column',
     position: 'absolute',
     gap: 8,
     top: 10,
@@ -114,4 +114,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Card;
+export default ContentCard;

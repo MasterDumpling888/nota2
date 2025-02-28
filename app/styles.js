@@ -6,7 +6,7 @@ const PAGE_WIDTH = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#181818',
     alignItems: 'center',
     gap: 10
   },
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
   cell: {
     color: 'black',
-    backgroundColor: 'transparent',
+    backgroundColor: '#181818',
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -160,6 +160,52 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 8,
     marginRight: 8,
+  },
+  questionContainer: {
+    marginVertical: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#32FB0A',
+    borderRadius: 5,
+  },
+  answerInput: {
+    marginTop: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#32FB0A',
+    borderRadius: 5,
+  },
+  revealButton: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: '#32FB0A',
+    borderRadius: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 5,
+  },
+  revealButtonText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  answerText: {
+    marginTop: 10,
+    color: 'black',
+    fontSize: 16,
+  },
+  submitButton: {
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: '#32FB0A',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  submitButtonText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
