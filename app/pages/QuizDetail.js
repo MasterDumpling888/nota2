@@ -16,7 +16,7 @@ function QuizDetail({ route, navigation }) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#181818' }}>
       <ScrollView>
         <PageBox title="Quiz" onClose={() => navigation.goBack()}>
           {quiz.map((qaPair, index) => (

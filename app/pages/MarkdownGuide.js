@@ -17,12 +17,12 @@ const markdownGuides = [
     `,
   },
   {
-    title: 'Emphasis',
+    title: 'Emphasis & Strong',
     markdown: `
-*Italic*  
-**Bold**  
+*Italic*
+**Bold**
 ***Bold Italic***
-    `,
+`,
   },
   {
     title: 'Lists',
@@ -32,13 +32,12 @@ const markdownGuides = [
 - Item 2
   - Subitem 1
   - Subitem 2
-
 ### Ordered
 1. Item 1
 2. Item 2
    1. Subitem 1
    2. Subitem 2
-    `,
+`,
   },
   {
     title: 'Links',
@@ -72,7 +71,7 @@ Block code
     title: 'Tables',
     markdown: `
 | Month    | Savings |
-| -------- | ------- |
+|----------|---------|
 | January  | $250    |
 | February | $80     |
 | March    | $420    |
@@ -97,7 +96,7 @@ function MarkdownGuide({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#181818',
     alignItems: 'center',
   },
 });

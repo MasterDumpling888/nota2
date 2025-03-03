@@ -4,10 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import NoteNavBar from '../components/NoteNavBar';
 import PageBox from '../components/PageBox';
 import Icon from 'react-native-vector-icons/Ionicons';
+import markdownStyles from '../markdownStyles';
 import Markdown from 'react-native-markdown-display';
 import { getFontSize } from '../responsiveFont';
-import { addNote, getNote, updateNote, fetchFolders, fetchCategories } from '../services/notesService';
-import { summarizeNote, generateReviewQuestions } from '../services/aiService';
+import { addNote, getNote, updateNote, fetchFolders, fetchTags } from '../services/notesService';
+import { summarizeNote } from '../services/aiService';
 import Footer from '../components/Footer';
 
 function NoteEditor({ route, navigation }) {
@@ -16,11 +17,11 @@ function NoteEditor({ route, navigation }) {
   const [content, setContent] = useState('');
   const [summarizedContent, setSummarizedContent] = useState('');
   const [folder, setFolder] = useState('');
-  const [category, setCategory] = useState('');
+  const [tag, setTag] = useState('');
   const [folders, setFolders] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
   const [folderDropdownVisible, setFolderDropdownVisible] = useState(false);
-  const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
+  const [tagDropdownVisible, setTagDropdownVisible] = useState(false);
 
   useEffect(() => {
     const loadNote = async () => {
@@ -31,7 +32,7 @@ function NoteEditor({ route, navigation }) {
           setContent(note.content);
           setSummarizedContent(note.summary || '');
           setFolder(note.folder || '');
-          setCategory(note.category || '');
+          setTag(note.tag || '');
         } catch (error) {
           console.error('Failed to load note', error);
         }
@@ -47,18 +48,18 @@ function NoteEditor({ route, navigation }) {
       }
     };
 
-    const loadCategories = async () => {
+    const loadTags = async () => {
       try {
-        const categoriesList = await fetchCategories();
-        setCategories(categoriesList);
+        const tagsList = await fetchTags();
+        setTags(tagsList);
       } catch (error) {
-        console.error('Failed to load categories', error);
+        console.error('Failed to load tags', error);
       }
     };
 
     loadNote();
     loadFolders();
-    loadCategories();
+    loadTags();
   }, [noteId]);
 
   const handleSaveNote = async () => {
@@ -91,31 +92,20 @@ function NoteEditor({ route, navigation }) {
     }
   };
 
-  const handleGenerateQuestions = async () => {
-    try {
-      const questions = await generateReviewQuestions(content);
-      console.log('Generated Questions:', questions);
-      // Handle displaying the questions to the user
-    } catch (error) {
-      console.error('Failed to generate review questions', error);
-    }
-  };
-
   const renderFolderItem = ({ item }) => (
     <TouchableOpacity onPress={() => { setFolder(item.id); setFolderDropdownVisible(false); }}>
       <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
 
-  const renderCategoryItem = ({ item }) => (
-    <TouchableOpacity onPress={() => { setCategory(item.id); setCategoryDropdownVisible(false); }}>
+  const renderTagItem = ({ item }) => (
+    <TouchableOpacity onPress={() => { setTag(item.id); setTagDropdownVisible(false); }}>
       <Text style={styles.dropdownItem}>{item.name}</Text>
     </TouchableOpacity>
   );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <NoteNavBar title={title || "New Note"} /> */}
       <PageBox title={noteId ? "Edit Note" : "Create Note"} onClose={() => navigation.goBack()}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
@@ -135,7 +125,9 @@ function NoteEditor({ route, navigation }) {
           </View>
           <View style={styles.previewContainer}>
             <Text style={styles.inputTitle}>Preview:</Text>
-            <Markdown style={markdownStyles}>{content}</Markdown>
+            <Text style={styles.outputContent}>
+              <Markdown style={markdownStyles}>{content}</Markdown>
+            </Text>
           </View>
           <TextInput
             style={styles.textArea}
@@ -149,11 +141,7 @@ function NoteEditor({ route, navigation }) {
             <Text style={styles.inputTitle}>Folder</Text>
             <TouchableOpacity onPress={() => setFolderDropdownVisible(!folderDropdownVisible)} style={styles.selector}>
               <Text style={styles.selectorText}>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
-              <Icon
-                name="chevron-down-outline"
-                size={20}
-                color="white"
-              />
+              <Icon name="caret-down" size={24} color="#33FD0A" />
             </TouchableOpacity>
             {folderDropdownVisible && (
               <View style={styles.dropdown}>
@@ -169,24 +157,20 @@ function NoteEditor({ route, navigation }) {
             <Text style={styles.inputTitle}>Tag</Text>
             <TouchableOpacity onPress={() => setTagDropdownVisible(!tagDropdownVisible)} style={styles.selector}>
               <Text style={styles.selectorText}>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
-              <Icon
-                name="chevron-down-outline"
-                size={20}
-                color="white"
-              />
+              <Icon name="caret-down" size={24} color="#33FD0A" />
             </TouchableOpacity>
-            {categoryDropdownVisible && (
+            {tagDropdownVisible && (
               <View style={styles.dropdown}>
                 <FlatList
-                  data={categories}
-                  renderItem={renderCategoryItem}
+                  data={tags}
+                  renderItem={renderTagItem}
                   keyExtractor={(item) => item.id}
                 />
               </View>
             )}
           </View>
           <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote} >
-            <Text style={styles.saveButtonText}>Save</Text>
+            <Text style={{ fontFamily: 'Raleway-SemiBold', fontSize: getFontSize(18) }}>Save</Text>
           </TouchableOpacity>
           <Footer />
         </ScrollView>
@@ -214,20 +198,19 @@ const styles = StyleSheet.create({
     paddingRight: 32,
   },
   textArea: {
-    backgroundColor: '#33FD0Aa1',
-    borderWidth: 1,
-    borderColor: '#33FD0A',
+    backgroundColor: '#33FD0Aa3',
     borderRadius: 5,
     padding: 8,
     marginBottom: 16,
+    height: 'auto',
+    color: 'white',
     fontSize: getFontSize(16),
-    fontFamily: 'Raleway-SemiBold',
-    color: 'white'
+    fontFamily: 'Raleway-Regular',
   },
   outputContent: {
     color: 'white',
     fontSize: getFontSize(16),
-    fontFamily: 'Raleway-Regular'
+    fontFamily: 'Raleway-Regular',
   },
   saveButton: {
     padding: 16,
@@ -237,7 +220,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 16,
   },
-  saveButtonText: { fontFamily: 'Raleway-SemiBold', fontSize: getFontSize(18) },
   aiButton: {
     padding: 8,
     backgroundColor: '#33FD0A',
@@ -246,34 +228,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selector: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#33FD0A',
     borderRadius: 5,
     padding: 8,
-    marginBottom: 8,
-    marginTop: 8,
+    marginVertical: 8,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   selectorText: {
-    fontSize: getFontSize(14),
     color: 'white',
+    fontSize: getFontSize(16),
     fontFamily: 'Raleway-Regular',
   },
   dropdown: {
     borderWidth: 1,
     borderColor: '#33FD0A',
     borderRadius: 5,
-    marginTop: 8,
+    marginVertical: 8,
     maxHeight: 150,
   },
   dropdownItem: {
     padding: 8,
     borderBottomWidth: 1,
+    backgroundColor: '#33FD0Aa3',
     borderBottomColor: '#33FD0A',
-    fontSize: getFontSize(14),
     color: 'white',
-    fontFamily: 'Raleway-Regular',
+    fontFamily: 'Raleway-SemiBold',
+    fontSize: getFontSize(14),
   },
   previewContainer: {
     marginTop: 16,
@@ -282,66 +264,6 @@ const styles = StyleSheet.create({
     borderLeftColor: '#33FD0A',
     padding: 8,
   },
-
 });
-
-const markdownStyles = {
-  body: {
-    color: 'white',
-    fontSize: getFontSize(16),
-  },
-  strong: {
-    color: 'white',
-    fontFamily: 'Raleway-Bold',
-  },
-  em: {
-    color: 'white',
-    fontFamily: 'Raleway-Italic',
-  },
-  heading1: {
-    color: 'white',
-    fontSize: getFontSize(24),
-    fontFamily: 'Raleway-Bold',
-  },
-  heading2: {
-    color: 'white',
-    fontSize: getFontSize(20),
-    fontFamily: 'Raleway-Bold',
-  },
-  heading3: {
-    color: 'white',
-    fontSize: getFontSize(18),
-    fontFamily: 'Raleway-Bold',
-  },
-  heading4: {
-    color: 'white',
-    fontSize: getFontSize(16),
-    fontFamily: 'Raleway-Bold',
-  },
-  heading5: {
-    color: 'white',
-    fontSize: getFontSize(14),
-    fontFamily: 'Raleway-Bold',
-  },
-  heading6: {
-    color: 'white',
-    fontSize: getFontSize(12),
-    fontFamily: 'Raleway-Bold',
-  },
-  paragraph: {
-    color: 'white',
-    fontSize: getFontSize(16),
-    fontFamily: 'Raleway-Regular',
-  },
-
-  link: {
-    color: '#33FD0A',
-  },
-  list_item: {
-    color: 'white',
-    fontSize: getFontSize(16),
-    fontFamily: 'Raleway-Regular',
-  },
-};
 
 export default NoteEditor;

@@ -54,6 +54,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#181818' }}>
+      <StatusBar style="light" />
       <NavigationContainer >
         {user ? <LoggedInNavBar /> : <NavBar />}
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -68,7 +69,7 @@ export default function App() {
           <Stack.Screen name="AccountSettings" component={AccountSettings} />
         </Stack.Navigator>
       </NavigationContainer>
-      <StatusBar style="auto" />
+      {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
   );
 }

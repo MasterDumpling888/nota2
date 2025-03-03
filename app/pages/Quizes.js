@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native'; // Import this!
 import PageBox from '../components/PageBox';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { generateQuestionsAndAnswers } from '../services/aiService';
+import { generateReviewQuestions } from '../services/aiService';
 import { fetchNotes } from '../services/notesService';
 import { getFontSize } from '../responsiveFont';
 
@@ -27,7 +27,7 @@ function Quizes({ navigation }) {
     loadNotes();
   }, []);
 
-  // 🟢 Reset all sliders when the user returns to this screen
+  // Reset all sliders when the user returns to this screen
   useFocusEffect(
     useCallback(() => {
       Object.values(slideAnims.current).forEach(anim => {
@@ -38,7 +38,7 @@ function Quizes({ navigation }) {
 
   const handleNoteSelect = async (note) => {
     try {
-      const generatedQuiz = await generateQuestionsAndAnswers(note.content);
+      const generatedQuiz = await generateReviewQuestions(note.content);
       navigation.navigate('QuizDetail', { quiz: generatedQuiz });
     } catch (error) {
       console.error('Failed to generate quiz', error);
