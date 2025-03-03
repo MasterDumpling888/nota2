@@ -65,7 +65,7 @@ export default function App() {
           <Stack.Screen name="QuizDetail" component={QuizDetail} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="NoteEditor" component={NoteEditor} options={{ header: (props) => <NoteNavBar {...props} /> }} />
+          <Stack.Screen name="NoteEditor" component={NoteEditor} />
           <Stack.Screen name="AccountSettings" component={AccountSettings} />
         </Stack.Navigator>
       </NavigationContainer>

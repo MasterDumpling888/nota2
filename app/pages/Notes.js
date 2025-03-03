@@ -6,6 +6,13 @@ import PageBox from '../components/PageBox';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { getFontSize } from '../responsiveFont';
 
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+// Adjust sizes based on screen width
+const FAB_SIZE = Math.min(width, height) * 0.15; // 12% of the smaller screen dimension
+
 const Notes = ({ navigation }) => {
   const [notes, setNotes] = useState([]);
   const [folders, setFolders] = useState([]);
@@ -366,21 +373,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingTop: 16,
     flexDirection: 'row',
-    gap: 45
+    gap: FAB_SIZE * 0.7, // Adjust gap based on FAB size
   },
   fab: {
     backgroundColor: '#33FD0A',
-    borderRadius: 50,
-    width: 65,
-    height: 65,
+    borderRadius: FAB_SIZE / 2,
+    width: FAB_SIZE,
+    height: FAB_SIZE,
     justifyContent: 'center',
     alignItems: 'center',
   },
   fabOption: {
     backgroundColor: '#33FD0A',
-    borderRadius: 50,
-    width: 65,
-    height: 65,
+    borderRadius: FAB_SIZE / 2,
+    width: FAB_SIZE,
+    height: FAB_SIZE,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
@@ -390,7 +397,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: getFontSize(14),
     fontFamily: 'Raleway-SemiBold',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',

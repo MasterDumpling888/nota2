@@ -88,7 +88,7 @@ const SlideButton = ({ note, onSelect, slideAnims }) => {
         const halfwayPoint = maxSlideDistance / 2;
 
         if (gestureState.dx > halfwayPoint) {
-          // 🟢 Spring to the end & THEN call onSelect
+          // Spring to the end & THEN call onSelect
           Animated.spring(slideAnim, {
             toValue: maxSlideDistance,
             useNativeDriver: false,
