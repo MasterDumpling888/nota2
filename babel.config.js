@@ -20,18 +20,7 @@
 //   };
 // };
 
-module.exports = function (api) {
-  api.cache(true);
-  return {
-    presets: ['babel-preset-expo'],
-    // plugins: [
-    //   ['module-resolver', {
-    //     alias: {
-    //       // genkit: 'genkit/lib', '@genkit-ai/googleai': '@genkit-ai/googleai/lib', 
-    //     },
-    //   },
-    //   ],
-    // ],
-  };
+module.exports = {
+  presets: ['module:metro-react-native-babel-preset'],
 };
 
