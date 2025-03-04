@@ -6,40 +6,46 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "jest --transformIgnorePatterns \"node_modules/(?!nota2)/\" --env=jsdom"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.5.0",
-    "@huggingface/transformers": "^3.3.3",
-    "@react-native-async-storage/async-storage": "^2.1.1",
+    "@google/generative-ai": "^0.22.0",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-masked-view/masked-view": "0.3.2",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/stack": "^7.1.1",
+<<<<<<< Updated upstream
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "expo": "~52.0.30",
     "expo-app-loading": "^2.1.1",
+=======
+    "expo": "^52.0.37",
+>>>>>>> Stashed changes
     "expo-font": "~13.0.4",
     "expo-linear-gradient": "~14.0.2",
+    "expo-splash-screen": "^0.29.22",
     "expo-status-bar": "~2.0.1",
     "expo-system-ui": "~4.0.8",
     "expo-updates": "~0.27.1",
     "firebase": "^11.3.1",
     "firebase-admin": "^13.1.0",
-    "openai": "^4.85.1",
     "react": "18.3.1",
     "react-native": "0.76.7",
     "react-native-markdown-display": "^7.0.2",
     "react-native-picker": "^4.3.7",
     "react-native-tab-view": "^4.0.5",
     "react-native-tableview-simple": "^4.4.1",
-    "react-navigation": "^5.0.0",
-    "torch": "^0.2.7"
+    "react-navigation": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react": "~18.3.12",
-    "typescript": "^5.3.3"
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.1.0",
+    "@types/react": "~18.3.1",
+    "jest": "^29.7.0",
+    "jest-expo": "^52.0.5"
   },
   "private": true
 }
