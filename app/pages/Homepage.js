@@ -89,7 +89,6 @@ function HomePage({ navigation }) {
               <ContentCard key={index} title={card.title} content={card.content} isLeft={card.isLeft} />
             ))}
           </View>
-          <StatusBar style="auto" />
           <Footer />
         </ScrollView>
       </SafeAreaView>
@@ -109,7 +108,6 @@ function HomePage({ navigation }) {
             <Card title="Take a Quiz" page="Quizes" navigation={navigation} isLeft={false} />
             <Card title="Markdown Help" page="MarkdownGuide" navigation={navigation} isLeft={true} />
           </View>
-          <StatusBar style="auto" />
           <Footer />
         </ScrollView>
       </SafeAreaView>

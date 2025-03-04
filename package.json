@@ -15,14 +15,10 @@
     "@react-native-masked-view/masked-view": "0.3.2",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/stack": "^7.1.1",
-<<<<<<< Updated upstream
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
-    "expo": "~52.0.30",
     "expo-app-loading": "^2.1.1",
-=======
     "expo": "^52.0.37",
->>>>>>> Stashed changes
     "expo-font": "~13.0.4",
     "expo-linear-gradient": "~14.0.2",
     "expo-splash-screen": "^0.29.22",

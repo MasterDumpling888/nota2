@@ -66,6 +66,7 @@ export default function App() {
   return (
 <<<<<<< Updated upstream
     <SafeAreaView style={{ flex: 1, backgroundColor: '#181818' }}>
+      <StatusBar style="light" />
       <NavigationContainer >
 =======
     <SafeAreaView style={{ flex: 1, backgroundColor: '#181818' }} onLayout={onLayoutRootView}>
@@ -81,11 +82,11 @@ export default function App() {
           <Stack.Screen name="QuizDetail" component={QuizDetail} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="NoteEditor" component={NoteEditor} options={{ header: (props) => <NoteNavBar {...props} /> }} />
+          <Stack.Screen name="NoteEditor" component={NoteEditor} />
           <Stack.Screen name="AccountSettings" component={AccountSettings} />
         </Stack.Navigator>
       </NavigationContainer>
-      <StatusBar style="auto" />
+      {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
   );
 }

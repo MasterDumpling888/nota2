@@ -1,45 +1,62 @@
-import axios from 'axios';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const BACKEND_API_URL = 'http://localhost:3000';
+// Initialize Gemini
+const genAI = new GoogleGenerativeAI('AIzaSyDKoSfHEB0oWlEdXNH-BmeFsZQuDoT2Dqs');
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 export const summarizeNote = async (content) => {
   try {
-    const response = await axios.post(`${BACKEND_API_URL}/summarize`, { content });
-    return response.data.summary;
+    const prompt = `Summarize the following text in 2-3 sentences:\n\n${content}`;
+    const result = await model.generateContent(prompt);
+    return result.response.text();
   } catch (error) {
-    console.error('Summarization error:', error.response?.data || error.message);
-    throw new Error('Failed to connect to the summarization service');
+    console.error('Failed to summarize text', error);
+    throw new Error('Failed to summarize text');
   }
 };
 
-export const generateQuestionsAndAnswers = async (content) => {
+export const generateReviewQuestions = async (content) => {
+  try {
+    const prompt = `Generate 3 questions and answers based on the following text. Format the response as a JSON array where each object contains a "question" and "answer" field:\n\n${content}`;
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.text();
+
+    // Parse the response as JSON
+    let qaPairs;
     try {
-     
-      const response = await axios.post(`${BACKEND_API_URL}/generate-qa`, { content });
-      
-      return response.data.qaPairs;
-    } catch (error) {
-      console.error('Q&A generation error:', error.response?.data || error.message);
-      throw new Error('Failed to generate questions and answers');
+      // Try to extract JSON array from the response
+      const jsonMatch = responseText.match(/\[[\s\S]*\]/);
+      if (jsonMatch) {
+        qaPairs = JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('Invalid JSON format in response');
+      }
+    } catch (parseError) {
+      console.error('Error parsing JSON response:', parseError);
+      console.log('Raw response:', responseText);
+
+      // Fallback: Try to format response manually
+      // This is a basic fallback in case the model doesn't return proper JSON
+      qaPairs = [];
+      const sections = responseText.split(/\d+\.\s*Question:/i);
+      sections.shift(); // Remove first empty section if any
+
+      for (const section of sections) {
+        const questionMatch = section.match(/^(.*?)(?:Answer:)/is);
+        const answerMatch = section.match(/Answer:(.*?)(?:\d+\.\s*Question:|$)/is);
+
+        if (questionMatch && answerMatch) {
+          qaPairs.push({
+            question: questionMatch[1].trim(),
+            answer: answerMatch[1].trim()
+          });
+        }
+      }
     }
-  };
-  
-const testAI = async () => {
-const content = "The Industrial Revolution, which began in the late 18th century, marked a major turning point in history. Almost every aspect of daily life was influenced in some way. The introduction of new machines, such as the steam engine, revolutionized manufacturing and transportation. Factories emerged, leading to urbanization as people moved to cities in search of work. While the Industrial Revolution brought about significant economic growth and technological advancements, it also had negative consequences, including poor working conditions, child labor, and environmental degradation. Over time, labor laws and reforms were introduced to address these issues, but the impact of this era is still felt today.";
-try {
-    const summary = await summarizeNote(content);
-    console.log('Summary:', summary);
 
-    const qaPairs = await generateQuestionsAndAnswers(content);
-    console.log('Questions and Answers:');
-    qaPairs.forEach((pair, index) => {
-    console.log(`\nQ${index+1}: ${pair.question}`);
-    console.log(`A${index+1}: ${pair.answer}`);
-    });
-} catch (error) {
-    console.error('Test failed:', error);
-}
+    return qaPairs;
+  } catch (error) {
+    console.error('Failed to generate questions and answers', error);
+    throw new Error('Failed to generate questions and answers');
+  }
 };
-
-// Run the test
-testAI();
