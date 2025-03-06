@@ -64,15 +64,9 @@ export default function App() {
   }
 
   return (
-<<<<<<< Updated upstream
     <SafeAreaView style={{ flex: 1, backgroundColor: '#181818' }}>
       <StatusBar style="light" />
       <NavigationContainer >
-=======
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#181818' }} onLayout={onLayoutRootView}>
-      <StatusBar style="light" />
-      <NavigationContainer>
->>>>>>> Stashed changes
         {user ? <LoggedInNavBar /> : <NavBar />}
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={HomePage} />

@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#181818",
+        "flex": 1,
+        "padding": 24,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "opacity": 1,
+          }
+        }
+      >
+        <Icon
+          color="#33FD0A"
+          name="chevron-back-outline"
+          size={24}
+          style={
+            {
+              "marginBottom": 15,
+              "padding": 0,
+            }
+          }
+        />
+        <Text
+          style={
+            {
+              "color": "#33FD0A",
+              "fontFamily": "Raleway-SemiBold",
+              "fontSize": 17,
+              "marginBottom": 16,
+            }
+          }
+        >
+          Login
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginBottom": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "Raleway-Regular",
+            "fontSize": 13,
+            "textAlign": "left",
+          }
+        }
+      >
+        Email
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        style={
+          {
+            "borderColor": "#33FD0A",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "white",
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 13,
+            "marginTop": 8,
+            "padding": 8,
+            "textAlign": "left",
+          }
+        }
+        value=""
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginBottom": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "Raleway-Regular",
+            "fontSize": 13,
+            "textAlign": "left",
+          }
+        }
+      >
+        Password
+      </Text>
+      <TextInput
+        onChangeText={[Function]}
+        secureTextEntry={true}
+        style={
+          {
+            "borderColor": "#33FD0A",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "white",
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 13,
+            "marginTop": 8,
+            "padding": 8,
+            "textAlign": "left",
+          }
+        }
+        value=""
+      />
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#33FD0A",
+          "borderRadius": 5,
+          "justifyContent": "center",
+          "opacity": 1,
+          "padding": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 15,
+          }
+        }
+      >
+        Login
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaView>
+`;

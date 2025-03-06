@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkdownGuide snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#181818",
+      "flex": 1,
+    }
+  }
+>
+  <mock-PageBox>
+    <RCTScrollView>
+      <View>
+        <mock-MarkdownCard>
+          Headers
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Emphasis & Strong
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Lists
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Links
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Images
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Blockquotes
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Code
+        </mock-MarkdownCard>
+        <mock-MarkdownCard>
+          Tables
+        </mock-MarkdownCard>
+      </View>
+    </RCTScrollView>
+  </mock-PageBox>
+</RNCSafeAreaView>
+`;
