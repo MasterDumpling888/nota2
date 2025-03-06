@@ -33,11 +33,11 @@ jest.mock('react-native-fit-image', () => 'FitImage');
 
 jest.mock('react-native-markdown-display', () => 'MarkdownDisplay');
 
-jest.mock('./app/responsiveFont', () => ({
+jest.mock('./responsiveFont', () => ({
   getFontSize: jest.fn(size => size),
 }));
 
-jest.mock('./app/components/PageBox', () => 'PageBox');
+jest.mock('./components/PageBox', () => 'PageBox');
 
 global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
 
