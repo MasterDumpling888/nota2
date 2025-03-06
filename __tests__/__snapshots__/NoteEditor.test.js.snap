@@ -1,0 +1,511 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteEditor Component NoteEditor snapshot test 1`] = `
+<SafeAreaView
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <PageBox
+    onClose={[Function]}
+    title="Edit Note"
+  >
+    <RCTScrollView
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingRight": 32,
+            }
+          }
+        >
+          <TextInput
+            onChangeText={[Function]}
+            placeholder="Add your title"
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 24,
+              }
+            }
+            value=""
+          />
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#33FD0A",
+                "borderRadius": 100,
+                "justifyContent": "center",
+                "opacity": 1,
+                "padding": 8,
+              }
+            }
+          >
+            <Icon
+              color="black"
+              name="sparkles"
+              size={24}
+            />
+          </View>
+        </View>
+        <View
+          style={
+            {
+              "borderLeftColor": "#33FD0A",
+              "borderLeftWidth": 2,
+              "marginBottom": 16,
+              "marginTop": 16,
+              "padding": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 18,
+                "marginBottom": 8,
+              }
+            }
+          >
+            Summary:
+          </Text>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-Regular",
+                "fontSize": 16,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "borderLeftColor": "#33FD0A",
+              "borderLeftWidth": 2,
+              "marginBottom": 16,
+              "marginTop": 16,
+              "padding": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 18,
+                "marginBottom": 8,
+              }
+            }
+          >
+            Preview:
+          </Text>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-Regular",
+                "fontSize": 16,
+              }
+            }
+          >
+            <MarkdownDisplay
+              style={
+                {
+                  "blockquote": {
+                    "backgroundColor": "#646464",
+                    "borderLeftColor": "#33FD0A",
+                    "borderLeftWidth": 4,
+                    "color": "white",
+                    "fontFamily": "Raleway-Italic",
+                    "fontSize": 16,
+                    "marginVertical": 10,
+                    "paddingLeft": 10,
+                    "textAlign": "left",
+                  },
+                  "body": {
+                    "color": "white",
+                    "fontSize": 16,
+                    "textAlign": "auto",
+                  },
+                  "bullet_list_icon": {
+                    "marginLeft": 3,
+                    "marginRight": 3,
+                  },
+                  "code_inline": {
+                    "backgroundColor": "#646464",
+                    "color": "#33FD0A",
+                    "fontFamily": "Courier",
+                    "fontSize": 16,
+                  },
+                  "em": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Italic",
+                    "textAlign": "left",
+                  },
+                  "fence": {
+                    "backgroundColor": "#646464",
+                    "borderColor": "#33FD0A",
+                    "borderLeftColor": "#33FD0A",
+                    "borderLeftWidth": 4,
+                    "borderRadius": 3,
+                    "color": "#33FD0A",
+                    "fontFamily": "Courier",
+                    "fontSize": 16,
+                    "marginVertical": 10,
+                    "padding": 10,
+                  },
+                  "heading1": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "fontSize": 24,
+                  },
+                  "heading2": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "fontSize": 20,
+                  },
+                  "heading3": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "fontSize": 18,
+                  },
+                  "heading4": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "fontSize": 16,
+                  },
+                  "heading5": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "fontSize": 14,
+                  },
+                  "heading6": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "fontSize": 12,
+                  },
+                  "link": {
+                    "color": "#33FD0A",
+                  },
+                  "list_item": {
+                    "color": "white",
+                    "flexDirection": "row",
+                    "fontFamily": "Raleway-Regular",
+                    "fontSize": 14,
+                    "justifyContent": "flex-start",
+                    "width": "100%",
+                  },
+                  "ordered_list_icon": {
+                    "marginLeft": 3,
+                    "marginRight": 3,
+                  },
+                  "paragraph": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Regular",
+                    "fontSize": 16,
+                  },
+                  "strong": {
+                    "color": "white",
+                    "fontFamily": "Raleway-Bold",
+                    "textAlign": "left",
+                  },
+                  "table": {
+                    "borderColor": "#33FD0A",
+                    "borderRadius": 3,
+                    "borderWidth": 1,
+                    "marginVertical": 10,
+                  },
+                  "tbody": {
+                    "fontFamily": "Raleway-Regular",
+                    "fontSize": 12,
+                  },
+                  "td": {
+                    "borderColor": "#33FD0A",
+                    "borderWidth": 1,
+                    "color": "white",
+                    "flex": 1,
+                    "fontFamily": "Raleway-Regular",
+                    "padding": 5,
+                  },
+                  "th": {
+                    "borderColor": "#33FD0A",
+                    "borderWidth": 1,
+                    "color": "white",
+                    "flex": 1,
+                    "fontFamily": "Raleway-Bold",
+                    "padding": 5,
+                  },
+                  "thead": {
+                    "backgroundColor": "#33FD0A",
+                    "color": "black",
+                  },
+                  "tr": {
+                    "borderBottomWidth": 1,
+                    "borderColor": "#33FD0A",
+                    "flexDirection": "row",
+                  },
+                }
+              }
+            />
+          </Text>
+        </View>
+        <TextInput
+          multiline={true}
+          onChangeText={[Function]}
+          placeholder="Start typing here! (Markdown supported)"
+          style={
+            {
+              "backgroundColor": "#33FD0Aa3",
+              "borderRadius": 5,
+              "color": "white",
+              "fontFamily": "Raleway-Regular",
+              "fontSize": 16,
+              "height": "auto",
+              "marginBottom": 16,
+              "padding": 8,
+            }
+          }
+          value=""
+        />
+        <View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 18,
+                "marginBottom": 8,
+              }
+            }
+          >
+            Folder
+          </Text>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "borderColor": "#33FD0A",
+                "borderRadius": 5,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginVertical": 8,
+                "opacity": 1,
+                "padding": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "Raleway-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Select Folder
+            </Text>
+            <Icon
+              color="#33FD0A"
+              name="caret-down"
+              size={24}
+            />
+          </View>
+        </View>
+        <View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 18,
+                "marginBottom": 8,
+              }
+            }
+          >
+            Tag
+          </Text>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "borderColor": "#33FD0A",
+                "borderRadius": 5,
+                "borderWidth": 2,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginVertical": 8,
+                "opacity": 1,
+                "padding": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "Raleway-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Select Tag
+            </Text>
+            <Icon
+              color="#33FD0A"
+              name="caret-down"
+              size={24}
+            />
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#33FD0A",
+              "borderRadius": 5,
+              "justifyContent": "center",
+              "marginTop": 16,
+              "opacity": 1,
+              "padding": 16,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 18,
+              }
+            }
+          >
+            Save
+          </Text>
+        </View>
+        <Footer />
+      </View>
+    </RCTScrollView>
+  </PageBox>
+</SafeAreaView>
+`;

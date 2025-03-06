@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Component Login snapshot test 1`] = `
+exports[`SignUp Component Sign Up snapshot test 1`] = `
 <RNCSafeAreaView
   edges={
     {
@@ -18,8 +18,45 @@ exports[`Login Component Login snapshot test 1`] = `
 >
   <PageBox
     onClose={[Function]}
-    title="Login"
+    title="Sign Up"
   >
+    <View
+      style={
+        {
+          "marginBottom": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "Raleway-Regular",
+            "fontSize": 14,
+            "textAlign": "left",
+          }
+        }
+      >
+        Username
+      </Text>
+      <TextInput
+        onChangeText={[Function]}
+        style={
+          {
+            "borderColor": "#33FD0A",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "white",
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 14,
+            "marginTop": 8,
+            "padding": 8,
+            "textAlign": "left",
+          }
+        }
+        value=""
+      />
+    </View>
     <View
       style={
         {
@@ -98,6 +135,44 @@ exports[`Login Component Login snapshot test 1`] = `
       />
     </View>
     <View
+      style={
+        {
+          "marginBottom": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "Raleway-Regular",
+            "fontSize": 14,
+            "textAlign": "left",
+          }
+        }
+      >
+        Confirm Password
+      </Text>
+      <TextInput
+        onChangeText={[Function]}
+        secureTextEntry={true}
+        style={
+          {
+            "borderColor": "#33FD0A",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "white",
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 14,
+            "marginTop": 8,
+            "padding": 8,
+            "textAlign": "left",
+          }
+        }
+        value=""
+      />
+    </View>
+    <View
       accessibilityState={
         {
           "busy": undefined,
@@ -144,7 +219,7 @@ exports[`Login Component Login snapshot test 1`] = `
           }
         }
       >
-        Login
+        Sign Up
       </Text>
     </View>
   </PageBox>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AccountSettings snapshot test 1`] = `
+exports[`AccountSettings Component AccountSettings snapshot test 1`] = `
 <RNCSafeAreaView
   accessibilityState={
     {
@@ -34,85 +34,10 @@ exports[`AccountSettings snapshot test 1`] = `
     }
   }
 >
-  <View
-    style={
-      {
-        "backgroundColor": "#181818",
-        "flex": 1,
-        "padding": 24,
-      }
-    }
+  <PageBox
+    onClose={[Function]}
+    title="Account Settings"
   >
-    <View
-      style={
-        {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-        }
-      }
-    >
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "opacity": 1,
-          }
-        }
-      >
-        <Icon
-          color="#33FD0A"
-          name="chevron-back-outline"
-          size={24}
-          style={
-            {
-              "marginBottom": 15,
-              "padding": 0,
-            }
-          }
-        />
-        <Text
-          style={
-            {
-              "color": "#33FD0A",
-              "fontFamily": "Raleway-SemiBold",
-              "fontSize": 17,
-              "marginBottom": 16,
-            }
-          }
-        >
-          Account Settings
-        </Text>
-      </View>
-    </View>
     <View
       style={
         {
@@ -143,7 +68,7 @@ exports[`AccountSettings snapshot test 1`] = `
               "color": "white",
               "flex": 1,
               "fontFamily": "Raleway-Bold",
-              "fontSize": 22.5,
+              "fontSize": 24,
             }
           }
           value=""
@@ -174,7 +99,7 @@ exports[`AccountSettings snapshot test 1`] = `
             {
               "color": "white",
               "fontFamily": "Raleway-SemiBold",
-              "fontSize": 15,
+              "fontSize": 16,
             }
           }
         >
@@ -241,7 +166,7 @@ exports[`AccountSettings snapshot test 1`] = `
               {
                 "color": "white",
                 "fontFamily": "Raleway-SemiBold",
-                "fontSize": 13,
+                "fontSize": 14,
               }
             }
           >
@@ -298,7 +223,7 @@ exports[`AccountSettings snapshot test 1`] = `
               {
                 "color": "white",
                 "fontFamily": "Raleway-SemiBold",
-                "fontSize": 13,
+                "fontSize": 14,
               }
             }
           >
@@ -326,7 +251,7 @@ exports[`AccountSettings snapshot test 1`] = `
             {
               "color": "white",
               "fontFamily": "Raleway-SemiBold",
-              "fontSize": 15,
+              "fontSize": 16,
             }
           }
         >
@@ -393,7 +318,7 @@ exports[`AccountSettings snapshot test 1`] = `
               {
                 "color": "white",
                 "fontFamily": "Raleway-SemiBold",
-                "fontSize": 13,
+                "fontSize": 14,
               }
             }
           >
@@ -451,7 +376,7 @@ exports[`AccountSettings snapshot test 1`] = `
                 {
                   "color": "white",
                   "fontFamily": "Raleway-SemiBold",
-                  "fontSize": 13,
+                  "fontSize": 14,
                 },
                 {
                   "color": "red",
@@ -464,6 +389,6 @@ exports[`AccountSettings snapshot test 1`] = `
         </View>
       </View>
     </View>
-  </View>
+  </PageBox>
 </RNCSafeAreaView>
 `;

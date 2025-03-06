@@ -16,6 +16,15 @@ jest.mock("firebase/auth", () => ({
     user: { uid: "123", email: "test@example.com" },
   })),
   signOut: jest.fn(async () => Promise.resolve()),
+  createUserWithEmailAndPassword: jest.fn(async () => ({
+    user: { uid: "test-uid", email: "newuser@example.com" },
+  }))
+}));
+
+jest.mock("firebase/firestore", () => ({
+  doc: jest.fn(),
+  setDoc: jest.fn(() => Promise.resolve()),
+  getFirestore: jest.fn(() => ({}))
 }));
 
 jest.mock("react-native-vector-icons/Ionicons", () => "Icon");
@@ -24,5 +33,15 @@ jest.mock('react-native-fit-image', () => 'FitImage');
 
 jest.mock('react-native-markdown-display', () => 'MarkdownDisplay');
 
+jest.mock('./app/responsiveFont', () => ({
+  getFontSize: jest.fn(size => size),
+}));
+
+jest.mock('./app/components/PageBox', () => 'PageBox');
 
 global.setImmediate = global.setImmediate || ((fn, ...args) => global.setTimeout(fn, 0, ...args));
+
+global.mockNavigation = {
+  navigate: jest.fn(),
+  goBack: jest.fn(),
+};
