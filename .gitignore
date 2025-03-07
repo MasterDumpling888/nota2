@@ -35,5 +35,7 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# api keys
-nota2_nlp.json
+
+# Ignore native project folders
+/android
+/ios
