@@ -32,10 +32,5 @@ yarn-error.*
 # local env files
 .env*.local
 
-# typescript
-*.tsbuildinfo
-
-
-# Ignore native project folders
-/android
+# android ios build
 /ios

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import * as Font from 'expo-font';
@@ -22,7 +22,11 @@ import SignUp from './pages/SignUp';
 import NoteEditor from './pages/NoteEditor';
 import AccountSettings from './pages/AccountSettings';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+
+if (__DEV__) {
+  console.log('App started in development mode');
+}
 
 export default function App() {
   const [user, setUser] = useState(null);

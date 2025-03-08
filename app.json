@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "runtimeVersion": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/nota.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -15,15 +15,13 @@
     },
     "jsEngine": "hermes",
     "ios": {
-      "jsEngine": "jsc",
       "supportsTablet": true,
       "bundleIdentifier": "com.masterdumpling.nota2"
     },
     "android": {
-      "jsEngine": "jsc",
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./app/assets/logo.png",
+        "backgroundColor": "#33FD0A"
       },
       "package": "com.masterdumpling.nota2"
     },
