@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import NoteNavBar from '../components/NoteNavBar';
 import PageBox from '../components/PageBox';
 import Icon from 'react-native-vector-icons/Ionicons';
 import markdownStyles from '../markdownStyles';
@@ -104,76 +103,87 @@ function NoteEditor({ route, navigation }) {
     </TouchableOpacity>
   );
 
+  const renderContent = () => (
+    <View>
+      <View style={styles.header}>
+        <TextInput
+          style={styles.input}
+          value={title}
+          placeholder='Add your title'
+          placeholderTextColor={'gray'}
+          onChangeText={setTitle}
+        />
+        <TouchableOpacity style={styles.aiButton} onPress={handleSummarizeNote} >
+          <Icon name="sparkles" size={24} color="black" style={styles.closeIcon} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.previewContainer}>
+        <Text style={styles.inputTitle}>Summary:</Text>
+        <Text style={styles.outputContent}>{summarizedContent}</Text>
+      </View>
+      <View style={styles.previewContainer}>
+        <Text style={styles.inputTitle}>Preview:</Text>
+        <Text style={styles.outputContent}>
+          <Markdown style={markdownStyles}>{content}</Markdown>
+        </Text>
+      </View>
+      <TextInput
+        style={styles.textArea}
+        value={content}
+        placeholder='Start typing here! (Markdown supported)'
+        placeholderTextColor={'#33FD0A'}
+        onChangeText={setContent}
+        multiline
+      />
+
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputTitle}>Folder</Text>
+        <TouchableOpacity onPress={() => setFolderDropdownVisible(!folderDropdownVisible)} style={styles.selector}>
+          <Text style={styles.selectorText}>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
+          <Icon name="caret-down" size={24} color="#33FD0A" />
+        </TouchableOpacity>
+        {folderDropdownVisible && (
+          <View style={styles.dropdown}>
+            <FlatList
+              data={folders}
+              renderItem={renderFolderItem}
+              keyExtractor={(item) => item.id}
+            />
+          </View>
+        )}
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputTitle}>Tag</Text>
+        <TouchableOpacity onPress={() => setTagDropdownVisible(!tagDropdownVisible)} style={styles.selector}>
+          <Text style={styles.selectorText}>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
+          <Icon name="caret-down" size={24} color="#33FD0A" />
+        </TouchableOpacity>
+        {tagDropdownVisible && (
+          <View style={styles.dropdown}>
+            <FlatList
+              data={tags}
+              renderItem={renderTagItem}
+              keyExtractor={(item) => item.id}
+            />
+          </View>
+        )}
+      </View>
+      <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote} >
+        <Text style={{ fontFamily: 'Raleway-SemiBold', fontSize: getFontSize(18) }}>Save</Text>
+      </TouchableOpacity>
+      <Footer />
+    </View>
+  );
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <PageBox title={noteId ? "Edit Note" : "Create Note"} onClose={() => navigation.goBack()}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.header}>
-            <TextInput
-              style={styles.input}
-              value={title}
-              placeholder='Add your title'
-              onChangeText={setTitle}
-            />
-            <TouchableOpacity style={styles.aiButton} onPress={handleSummarizeNote} >
-              <Icon name="sparkles" size={24} color="black" style={styles.closeIcon} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.previewContainer}>
-            <Text style={styles.inputTitle}>Summary:</Text>
-            <Text style={styles.outputContent}>{summarizedContent}</Text>
-          </View>
-          <View style={styles.previewContainer}>
-            <Text style={styles.inputTitle}>Preview:</Text>
-            <Text style={styles.outputContent}>
-              <Markdown style={markdownStyles}>{content}</Markdown>
-            </Text>
-          </View>
-          <TextInput
-            style={styles.textArea}
-            value={content}
-            placeholder='Start typing here! (Markdown supported)'
-            onChangeText={setContent}
-            multiline
-          />
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputTitle}>Folder</Text>
-            <TouchableOpacity onPress={() => setFolderDropdownVisible(!folderDropdownVisible)} style={styles.selector}>
-              <Text style={styles.selectorText}>{folder ? folders.find(f => f.id === folder)?.name : 'Select Folder'}</Text>
-              <Icon name="caret-down" size={24} color="#33FD0A" />
-            </TouchableOpacity>
-            {folderDropdownVisible && (
-              <View style={styles.dropdown}>
-                <FlatList
-                  data={folders}
-                  renderItem={renderFolderItem}
-                  keyExtractor={(item) => item.id}
-                />
-              </View>
-            )}
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputTitle}>Tag</Text>
-            <TouchableOpacity onPress={() => setTagDropdownVisible(!tagDropdownVisible)} style={styles.selector}>
-              <Text style={styles.selectorText}>{tag ? tags.find(c => c.id === tag)?.name : 'Select Tag'}</Text>
-              <Icon name="caret-down" size={24} color="#33FD0A" />
-            </TouchableOpacity>
-            {tagDropdownVisible && (
-              <View style={styles.dropdown}>
-                <FlatList
-                  data={tags}
-                  renderItem={renderTagItem}
-                  keyExtractor={(item) => item.id}
-                />
-              </View>
-            )}
-          </View>
-          <TouchableOpacity style={styles.saveButton} onPress={handleSaveNote} >
-            <Text style={{ fontFamily: 'Raleway-SemiBold', fontSize: getFontSize(18) }}>Save</Text>
-          </TouchableOpacity>
-          <Footer />
-        </ScrollView>
+        <FlatList
+          data={[{ key: 'content' }]}
+          renderItem={renderContent}
+          keyExtractor={(item) => item.key}
+          showsVerticalScrollIndicator={false}
+        />
       </PageBox>
     </SafeAreaView>
   );

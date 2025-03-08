@@ -47,6 +47,8 @@ function SignUp({ navigation }) {
             style={styles.input}
             value={username}
             onChangeText={setUsername}
+            placeholder='Username'
+            placeholderTextColor={'gray'}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -55,6 +57,8 @@ function SignUp({ navigation }) {
             style={styles.input}
             value={email}
             onChangeText={setEmail}
+            placeholder='Email'
+            placeholderTextColor={'gray'}
             keyboardType="email-address"
             autoCapitalize="none"
           />
@@ -65,6 +69,8 @@ function SignUp({ navigation }) {
             style={styles.input}
             value={password}
             onChangeText={setPassword}
+            placeholder='Password'
+            placeholderTextColor={'gray'}
             secureTextEntry
           />
         </View>
@@ -74,6 +80,8 @@ function SignUp({ navigation }) {
             style={styles.input}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
+            placeholder='Confirm Password'
+            placeholderTextColor={'gray'}
             secureTextEntry
           />
         </View>

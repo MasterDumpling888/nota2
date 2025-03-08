@@ -31,6 +31,8 @@ function Login({ navigation }) {
             style={styles.input}
             value={email}
             onChangeText={setEmail}
+            placeholder='Email'
+            placeholderTextColor={'gray'}
             keyboardType="email-address"
             autoCapitalize="none"
           />
@@ -40,6 +42,8 @@ function Login({ navigation }) {
           <TextInput
             style={styles.input}
             value={password}
+            placeholder='Password'
+            placeholderTextColor={'gray'}
             onChangeText={setPassword}
             secureTextEntry
           />
