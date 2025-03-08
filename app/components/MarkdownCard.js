@@ -4,18 +4,18 @@ import { getFontSize } from '../responsiveFont';
 import Markdown from 'react-native-markdown-display';
 import markdownStyles from '../markdownStyles';
 
-const MarkdownCard = (props) => {
+const MarkdownCard = ({ title, markdown }) => {
   return (
     <View style={styles.card}>
-      <Text style={styles.cardTitle}>{props.title}</Text>
+      <Text style={styles.cardTitle}>{title}</Text>
       <View style={styles.cardContent}>
         <View style={styles.cardInner}>
           <Text style={styles.cardContentTitle}>Input: Markdown</Text>
-          <Text style={styles.cardText}>{props.markdown}</Text>
+          <Text style={styles.cardText}>{markdown}</Text>
         </View>
         <View style={styles.cardInnerMD}>
           <Text style={styles.cardContentTitle}>Output</Text>
-          <Markdown style={markdownStyles}>{props.markdown}</Markdown>
+          <Markdown style={markdownStyles}>{markdown}</Markdown>
         </View>
       </View>
     </View>

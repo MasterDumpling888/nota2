@@ -1,0 +1,275 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notes Component Notes snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <PageBox
+    onClose={[Function]}
+    title="Your Notes"
+  >
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+          "marginBottom": 16,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#33FD0Aa3",
+            "borderColor": "#33FD0A",
+            "borderRadius": 50,
+            "borderWidth": 1,
+            "color": "black",
+            "flexDirection": "row",
+            "gap": 8,
+            "opacity": 1,
+            "padding": 10,
+          }
+        }
+      >
+        <Icon
+          color="#33FD0A"
+          name="document-text-outline"
+          size={24}
+        />
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "Raleway-SemiBold",
+              "fontSize": 15,
+            }
+          }
+        >
+          Notes
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "borderColor": "#33FD0A",
+            "borderRadius": 50,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "gap": 8,
+            "opacity": 1,
+            "padding": 10,
+          }
+        }
+      >
+        <Icon
+          color="#33FD0A"
+          name="folder-outline"
+          size={24}
+        />
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "Raleway-SemiBold",
+              "fontSize": 15,
+            }
+          }
+        >
+          Folders
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "borderColor": "#33FD0A",
+            "borderRadius": 50,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "gap": 8,
+            "opacity": 1,
+            "padding": 10,
+          }
+        }
+      >
+        <Icon
+          color="#33FD0A"
+          name="pricetag-outline"
+          size={24}
+        />
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "Raleway-SemiBold",
+              "fontSize": 15,
+            }
+          }
+        >
+          Tags
+        </Text>
+      </View>
+    </View>
+    <RCTScrollView
+      showsVerticalScrollIndicator={false}
+    >
+      <View />
+    </RCTScrollView>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "flexDirection": "row",
+          "gap": 78.75,
+          "justifyContent": "flex-end",
+          "paddingTop": 16,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#33FD0A",
+            "borderRadius": 56.25,
+            "height": 112.5,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 112.5,
+          }
+        }
+      >
+        <Icon
+          color="black"
+          name="add"
+          size={35}
+        />
+      </View>
+    </View>
+  </PageBox>
+</RNCSafeAreaView>
+`;

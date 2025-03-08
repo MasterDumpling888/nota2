@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quizes Component Quizes snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "backgroundColor": "#181818",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    showsVerticalScrollIndicator={false}
+  >
+    <View>
+      <PageBox
+        onClose={[Function]}
+        title="Select a Note for Quiz"
+      >
+        <Text
+          type="default"
+        >
+          No notes available.
+        </Text>
+      </PageBox>
+    </View>
+  </RCTScrollView>
+</RNCSafeAreaView>
+`;

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 
 import HomePage from './pages/Homepage';
 import MarkdownGuide from './pages/MarkdownGuide';
@@ -22,7 +22,11 @@ import SignUp from './pages/SignUp';
 import NoteEditor from './pages/NoteEditor';
 import AccountSettings from './pages/AccountSettings';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+
+if (__DEV__) {
+  console.log('App started in development mode');
+}
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -36,20 +40,31 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  const loadFonts = async () => {
-    await Font.loadAsync({
-      'Raleway-Regular': require('./assets/fonts/Raleway-Regular.ttf'),
-      'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
-      'Raleway-SemiBold': require('./assets/fonts/Raleway-SemiBold.ttf'),
-      'Raleway-Light': require('./assets/fonts/Raleway-Light.ttf'),
-      'Raleway-Italic': require('./assets/fonts/Raleway-Italic.ttf')
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        'Raleway-Regular': require('./assets/fonts/Raleway-Regular.ttf'),
+        'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
+        'Raleway-SemiBold': require('./assets/fonts/Raleway-SemiBold.ttf'),
+        'Raleway-Light': require('./assets/fonts/Raleway-Light.ttf'),
+        'Raleway-Italic': require('./assets/fonts/Raleway-Italic.ttf')
+      });
+      setFontsLoaded(true);
+      SplashScreen.hideAsync();
+    };
 
-    });
-    setFontsLoaded(true);
-  };
+    SplashScreen.preventAutoHideAsync();
+    loadFonts();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return <AppLoading startAsync={loadFonts} onFinish={() => setFontsLoaded(true)} onError={console.warn} />;
+    return null;
   }
 
   return (

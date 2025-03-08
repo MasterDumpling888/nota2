@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component Login snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <PageBox
+    onClose={[Function]}
+    title="Login"
+  >
+    <View
+      style={
+        {
+          "marginBottom": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "Raleway-Regular",
+            "fontSize": 14,
+            "textAlign": "left",
+          }
+        }
+      >
+        Email
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        style={
+          {
+            "borderColor": "#33FD0A",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "white",
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 14,
+            "marginTop": 8,
+            "padding": 8,
+            "textAlign": "left",
+          }
+        }
+        value=""
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginBottom": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "Raleway-Regular",
+            "fontSize": 14,
+            "textAlign": "left",
+          }
+        }
+      >
+        Password
+      </Text>
+      <TextInput
+        onChangeText={[Function]}
+        secureTextEntry={true}
+        style={
+          {
+            "borderColor": "#33FD0A",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "white",
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 14,
+            "marginTop": 8,
+            "padding": 8,
+            "textAlign": "left",
+          }
+        }
+        value=""
+      />
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#33FD0A",
+          "borderRadius": 5,
+          "justifyContent": "center",
+          "opacity": 1,
+          "padding": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontFamily": "Raleway-SemiBold",
+            "fontSize": 16,
+          }
+        }
+      >
+        Login
+      </Text>
+    </View>
+  </PageBox>
+</RNCSafeAreaView>
+`;

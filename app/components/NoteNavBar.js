@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -10,6 +10,11 @@ const NoteNavBar = ({ title }) => {
   const [menuProfileVisible, setMenuProfileVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
+  useEffect(() => {
+    console.log('menuVisible:', menuVisible);
+    console.log('menuProfileVisible:', menuProfileVisible);
+  }, [menuVisible, menuProfileVisible]);
+
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -18,6 +23,7 @@ const NoteNavBar = ({ title }) => {
       console.error('Failed to log out', error);
     }
   };
+
   return (
     <View style={styles.navBar}>
       <TouchableOpacity style={styles.navButtons} onPress={() => navigation.goBack()}>
@@ -56,7 +62,6 @@ const NoteNavBar = ({ title }) => {
         <View style={styles.menu}>
           <TouchableOpacity onPress={() => {
             navigation.navigate('AccountSettings');
-
             setMenuProfileVisible(false);
           }}>
             <Text style={styles.menuItem}>Settings</Text>

@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage Component HomePage snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#181818",
+      "flex": 1,
+      "paddingHorizontal": 20,
+    }
+  }
+>
+  <RCTScrollView
+    horizontal={false}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
+    style={
+      {
+        "borderColor": "#33FD0A",
+        "borderLeftWidth": 1,
+        "borderRightWidth": 1,
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexDirection": "column",
+              "gap": 15,
+              "marginTop": 50,
+            },
+            {
+              "paddingHorizontal": 35,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "Raleway-SemiBold",
+                "fontSize": 27,
+                "fontWeight": "bold",
+                "paddingLeft": 10,
+              },
+              {
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          Welcome to Nota 👋
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "Raleway-Regular",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "paddingLeft": 10,
+              },
+              {
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          Your notes
+          
+
+          just got 
+          <Text
+            style={
+              {
+                "fontFamily": "Raleway-SemiBold",
+              }
+            }
+          >
+            even better.
+          </Text>
+        </Text>
+        <View>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#33FD0A",
+                "borderRadius": 5,
+                "justifyContent": "center",
+                "marginBottom": 10,
+                "opacity": 1,
+                "padding": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "black",
+                  "fontFamily": "Raleway-SemiBold",
+                  "fontSize": 14,
+                }
+              }
+            >
+              Join Nota
+            </Text>
+          </View>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderRadius": 5,
+                "borderWidth": 1,
+                "justifyContent": "center",
+                "marginBottom": 10,
+                "opacity": 1,
+                "padding": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "black",
+                    "fontFamily": "Raleway-SemiBold",
+                    "fontSize": 14,
+                  },
+                  {
+                    "color": "#33FD0A",
+                  },
+                ]
+              }
+            >
+              What is Markdown?
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "Raleway-Regular",
+                "fontSize": 14,
+                "marginBottom": 16,
+              },
+              {
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Find out more!
+        </Text>
+        <Image
+          collapsable={false}
+          source={
+            {
+              "testUri": "../../../app/assets/CaretDoubleDown.png",
+            }
+          }
+          style={
+            {
+              "alignSelf": "center",
+              "height": 50,
+              "marginBottom": 16,
+              "resizeMode": "contain",
+              "transform": [
+                {
+                  "translateY": 0,
+                },
+              ],
+              "width": 50,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexDirection": "column",
+              "gap": 15,
+              "marginTop": 50,
+            },
+            {
+              "gap": 100,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+              "marginBottom": 40,
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "flex-start",
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderWidth": 1,
+                "flexDirection": "column",
+                "gap": 8,
+                "justifyContent": "center",
+                "left": 10,
+                "padding": 10,
+                "position": "absolute",
+                "top": 10,
+                "width": "75%",
+                "zIndex": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "Raleway-SemiBold",
+                  "fontSize": 24,
+                  "textAlign": "left",
+                }
+              }
+            >
+              Markdown-Powered Note-Taking
+            </Text>
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "Raleway-Regular",
+                  "fontSize": 14,
+                  "textAlign": "left",
+                }
+              }
+            >
+              Write freely with Markdown for effortless formatting. Bold text, headings, lists—everything you need for structured, clean notes.
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderWidth": 1,
+                "left": 0,
+                "padding": 40,
+                "top": 0,
+                "width": "75%",
+                "zIndex": 0,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+              "marginBottom": 40,
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "flex-end",
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderWidth": 1,
+                "flexDirection": "column",
+                "gap": 8,
+                "justifyContent": "center",
+                "padding": 10,
+                "position": "absolute",
+                "right": 10,
+                "top": 10,
+                "width": "75%",
+                "zIndex": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "white",
+                    "fontFamily": "Raleway-SemiBold",
+                    "fontSize": 24,
+                    "textAlign": "left",
+                  },
+                  {
+                    "textAlign": "right",
+                  },
+                ]
+              }
+            >
+              AI-Powered Summarization
+            </Text>
+            <Text
+              style={
+                [
+                  {
+                    "color": "white",
+                    "fontFamily": "Raleway-Regular",
+                    "fontSize": 14,
+                    "textAlign": "left",
+                  },
+                  {
+                    "textAlign": "right",
+                  },
+                ]
+              }
+            >
+              No time to review long notes? Let Nota’s AI create quick, concise summaries so you can absorb key points faster.
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderWidth": 1,
+                "padding": 40,
+                "right": 0,
+                "top": 0,
+                "width": "75%",
+                "zIndex": 0,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+              "marginBottom": 40,
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "flex-start",
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderWidth": 1,
+                "flexDirection": "column",
+                "gap": 8,
+                "justifyContent": "center",
+                "left": 10,
+                "padding": 10,
+                "position": "absolute",
+                "top": 10,
+                "width": "75%",
+                "zIndex": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "Raleway-SemiBold",
+                  "fontSize": 24,
+                  "textAlign": "left",
+                }
+              }
+            >
+              Smart Quiz Generation
+            </Text>
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "Raleway-Regular",
+                  "fontSize": 14,
+                  "textAlign": "left",
+                }
+              }
+            >
+              Studying for an exam? Transform your notes into quiz questions instantly and test your knowledge with AI-generated questions.
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "backgroundColor": "#181818",
+                "borderColor": "#33FD0A",
+                "borderWidth": 1,
+                "left": 0,
+                "padding": 40,
+                "top": 0,
+                "width": "75%",
+                "zIndex": 0,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "gap": 5,
+            "justifyContent": "center",
+            "marginTop": 50,
+            "padding": 16,
+          }
+        }
+      >
+        <Image
+          source={
+            {
+              "testUri": "../../../app/assets/footer-logo.png",
+            }
+          }
+          style={
+            {
+              "height": 50,
+              "resizeMode": "contain",
+              "width": 50,
+            }
+          }
+        />
+        <Text
+          style={
+            {
+              "color": "gray",
+              "fontSize": 12,
+            }
+          }
+        >
+          © 2025 Nota. All rights reserved.
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</RNCSafeAreaView>
+`;

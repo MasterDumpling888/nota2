@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkdownGuide Component MarkdownGuide snapshot test 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#181818",
+      "flex": 1,
+    }
+  }
+>
+  <mock-page-box
+    onClose={[Function]}
+    testID="page-box"
+    title="Markdown Guide"
+  >
+    <RCTScrollView>
+      <View>
+        <MarkdownCard
+          markdown="
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+    "
+          title="Headers"
+        />
+        <MarkdownCard
+          markdown="
+*Italic*
+**Bold**
+***Bold Italic***
+"
+          title="Emphasis & Strong"
+        />
+        <MarkdownCard
+          markdown="
+### Unordered
+- Item 1
+- Item 2
+  - Subitem 1
+  - Subitem 2
+### Ordered
+1. Item 1
+2. Item 2
+   1. Subitem 1
+   2. Subitem 2
+"
+          title="Lists"
+        />
+        <MarkdownCard
+          markdown="
+[Google](https://www.google.com)
+    "
+          title="Links"
+        />
+        <MarkdownCard
+          markdown="
+![Alt text](https://via.placeholder.com/150)
+    "
+          title="Images"
+        />
+        <MarkdownCard
+          markdown="
+> This is a blockquote.
+    "
+          title="Blockquotes"
+        />
+        <MarkdownCard
+          markdown="
+\`Inline code\`
+
+\`\`\`
+Block code
+\`\`\`
+    "
+          title="Code"
+        />
+        <MarkdownCard
+          markdown="
+| Month    | Savings |
+|----------|---------|
+| January  | $250    |
+| February | $80     |
+| March    | $420    |
+    "
+          title="Tables"
+        />
+      </View>
+    </RCTScrollView>
+  </mock-page-box>
+</RNCSafeAreaView>
+`;
